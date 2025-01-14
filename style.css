@@ -1,0 +1,134 @@
+/* 
+  Basic Reset and Font Setup
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    color: #f0f0f0;
+    background-color: #121212; /* Dark background */
+  }
+  
+  /* Define Custom Colors (Adjust to your liking) */
+  :root {
+    --primary-color: #ff7f00;  /* Orange */
+    --dark-color: #121212;    /* Dark background */
+    --text-color-light: #f0f0f0;
+  }
+  
+  /* Navigation Bar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--dark-color);
+    padding: 1rem 2rem;
+  }
+  
+  nav h1 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .nav-right a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: color 0.3s;
+  }
+  
+  .nav-right a:hover {
+    color: var(--primary-color);
+  }
+  
+  /* Main Content */
+  main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  /* Introduction Section */
+  .intro {
+    margin-bottom: 2rem;
+  }
+  
+  .intro h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+  
+  .intro p {
+    line-height: 1.6;
+  }
+  
+  /* Sections */
+  .info-section {
+    margin-bottom: 2rem;
+  }
+  
+  .info-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .info-section ul {
+    list-style: none;
+  }
+  
+  .info-section li {
+    margin: 0.5rem 0;
+  }
+  
+  /* Education */
+  .education-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.2rem;
+  }
+  .education-item p {
+    margin-bottom: 0.5rem; /* Adds space between each paragraph */
+  }
+  .education-item {
+    margin-bottom: 1rem;   /* Adds space below each education item */
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #1f1f1f;
+    color: var(--text-color-light);
+    margin-top: 2rem;
+    font-size: 0.9rem;
+  }
+  
+  /* 
+    Responsive Layout 
+    (Adjust breakpoints if you like)
+  */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav-right {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+  
+    .nav-right a {
+      margin: 0.5rem 0;
+    }
+  
+    main {
+      padding: 1rem;
+    }
+  }
+  
