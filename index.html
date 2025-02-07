@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-
   <!-- Ensures proper rendering on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emre's home</title>
+  <title>Emre's Home</title>
 
   <!-- Link to the external CSS file -->
   <link rel="stylesheet" href="style.css" />
@@ -31,53 +30,100 @@
   <!-- Main Content -->
   <main>
 
-    <!-- Introduction / About Section (Optional) -->
+    <!-- Introduction Section -->
     <section class="intro">
+      <h2>Hello! I'm Emre.</h2>
       <p>
-        Computer Science undergraduate with a proficiency in Python and C++, and a keen interest in computer engineering.
-        Well-versed in object-oriented programming, data structures, and algorithms. Possess foundational knowledge in computer engineering principles, including CPU architecture.
-        Seeking opportunities to apply my skills and gain experience in a role that bridges software development and computer engineering.
+        I'm a Computer Science undergraduate with a strong foundation in Python and C++,
+        and a keen interest in computer engineering and CPU architecture.  
+
+        I'm looking to apply my technical skills in a role bridging software development and computer engineering.
       </p>
     </section>
 
-    <!-- Programming Languages Section -->
-    <section id="languages" class="info-section">
-      <h2>Programming Languages</h2>
-      <ul>
-        <li>Python</li>
-        <li>C++</li>
-        <li>Java</li>
-      </ul>
+
+        <!-- Education Section -->
+        <section id="education" class="info-section">
+            <h2>Education</h2>
+      
+            <div class="education-item">
+              <h3>University of Exeter | BSc Computer Science</h3>
+              <p><b>Expected Graduation: 06/2027</b></p>
+              <ul>
+                <li>On track for First Class honours</li>
+                <li>Relevant modules include: Fundamentals of Machine Learning, Data Structures and Algorithms, Object-Oriented Programming</li>
+                <li>Achieved 4th place at the Exeter hackathon</li>
+              </ul>
+            </div>
+      
+            <div class="education-item">
+              <h3>Imperial College London | BEng Electrical Engineering</h3>
+              <p><b>Course not complete (2022 - 2023)</b></p>
+              <ul>
+                <li>Object-oriented programming in C++</li>
+                <li>Digital Electronics and Computer Architecture</li>
+                <li>Group design project - remote control server</li>
+              </ul>
+            </div>
+      
+            <div class="education-item">
+              <h3>Lycée Francais Charles de Gaulle | French baccalaureate</h3>
+              <p><b>2015 - 2022</b></p>
+              <ul>
+                <li>Specialty subjects: Mathematics, Physics, Chemistry</li>
+                <li>Graduated with distinction (félicitations du jury) 18.21/20</li>
+              </ul>
+            </div>
+          </section>
+
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="info-section">
+      <h2>Projects</h2>
+      <div class="project-item">
+        <h3>Fundamentals of Machine Learning</h3>
+        <p>
+            Built a Python-based logistic regression classifier using scikit-learn to classify handwritten digits.
+            Implemented advanced data cleaning, feature selection, and hyperparameter tuning to optimize results.
+        </p>
+        <p>
+            Implemented dimensionality reduction, using techniques such as PCA, t-SNE and UMAP.
+            Discussed the nuances of these techniques both for data visualisation and data preprocessing tasks.
+        </p>
+        <a href="https://github.com/AtlasICL/ML_Fundamentals" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-item">
+        <h3>Electrical Engineering Group Design Project</h3>
+        <p>
+            Built a remote-controlled rover with the ability to detect infrared signals and measure their frequency, detect radio signals, and sense the polarity of magnetic fields.
+        </p>
+        <p>
+            Designed and implemented a filtering and amplification circuit for detection of infrared signals through a phototransistor.
+        </p>
+        <p>
+            Simulated the design in LT Spice software and prototyped on a breadboard.
+        </p>
+        <p>
+            Wrote and implemented Arduino code to digitally interface with infrared detection circuit.
+
+        </p>
+        <a href="https://github.com/AtlasICL/EE-Design-Project-Report" target="_blank">View on GitHub</a>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="info-section">
-      <h2>Skills</h2>
-      <ul>
-        <li>Object-Oriented Programming</li>
-        <li>Data Structures & Algorithms</li>
-        <li>Machine Learning</li>
-        <li>Git & Version Control</li>
-      </ul>
-    </section>
 
-    <!-- Education Section -->
-    <section id="education" class="info-section">
-        <h2>Education</h2>
-        <div class="education-item">
-          <p><b>University of Exeter</b></p>
-          <p><b>BSc Computer Science | 2024 - 2027</b></p>
-          <p>On track for First Class Honours</p>
-          <p>Expected Graduation Year 2027</p>
-        </div>
-        <div class="education-item">
-            <p><b>Imperial College London | 2022 - 2024</b></p>
-            <p><b>BEng Electrical and Electronic Engineering</b></p>
-            <p>Degree incomplete</p>
-          </div>
-    </section>
 
-    <footer>
-        <p>© 2025 Emre Acarsoy</p>
-        <a href="mailto:ea616@exeter.ac.uk" class="contact-btn">Email me</a>
-    </footer>
+    
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Emre Acarsoy</p>
+    <a href="mailto:e.acarsoy@proton.me" class="contact-btn">Email me!</a>
+  </footer>
+
+</body>
+</html>

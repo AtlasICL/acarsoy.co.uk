@@ -5,166 +5,177 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     font-family: Arial, sans-serif;
     color: #f0f0f0;
     background-color: #121212; /* Dark background */
-  }
-  
-  /* Define Custom Colors (Adjust to your liking) */
-  :root {
+}
+
+/* Define Custom Colors (Adjust to your liking) */
+:root {
     --primary-color: #ff7f00;  /* Orange */
     --dark-color: #121212;    /* Dark background */
     --text-color-light: #f0f0f0;
-  }
-  
-  /* Navigation Bar */
-  nav {
+}
+
+/* Navigation Bar */
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--dark-color);
     padding: 1rem 2rem;
-  }
-  
-  nav h1 {
+}
+
+nav h1 {
     color: var(--primary-color);
     font-size: 1.5rem;
     font-weight: bold;
-  }
-  
-  .nav-right a {
+}
+
+.nav-right a {
     color: var(--text-color-light);
     text-decoration: none;
     margin-left: 1rem;
     transition: color 0.3s;
-  }
-  
-  .nav-right a:hover {
+}
+
+.nav-right a:hover {
     color: var(--primary-color);
-  }
-  
-  /* Main Content */
-  main {
+}
+
+/* Main Content */
+main {
     padding: 2rem;
     max-width: 1000px;
     margin: 0 auto;
-  }
-  
-  /* Introduction Section */
-  .intro {
+}
+
+/* Introduction Section */
+.intro {
     margin-bottom: 2rem;
-  }
-  
-  .intro h2 {
+}
+
+.intro h2 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
-  }
-  
-  .intro p {
-    line-height: 1.6;
-  }
-  
-  /* Sections */
+}
 
-  /* Give each .info-section a light border and some padding */
-    .info-section {
-    border: 1px solid #444; /* use a subtle color that fits the dark theme */
+.intro p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+/* Info Section */
+.info-section {
+    border: 1px solid #444;     /* Subtle border matching dark theme */
     padding: 1.5rem;
-    margin-bottom: 2rem;    /* space below the section */
-    border-radius: 6px;     /* slightly rounded corners (optional) */
-    background-color: #1b1b1b; /* darker background for contrast */
-  }
-  
-  .info-section h2 {
+    margin-bottom: 2rem;
+    border-radius: 6px;         
+    background-color: #1b1b1b;  /* Slightly lighter than body background */
+}
+
+.info-section h2 {
     color: var(--primary-color);
     margin-bottom: 1rem;
-  }
-  
-  .info-section ul {
+}
+
+/* Education, Experience, Projects items */
+.education-item, .experience-item, .project-item {
+    margin-bottom: 1.5rem;
+}
+
+.education-item h3, .experience-item h3, .project-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.3rem;
+}
+
+.education-item p, .experience-item p, .project-item p {
+    margin-bottom: 0.3rem;
+}
+
+.info-section ul {
     list-style: none;
-  }
-  
-  .info-section li {
+    padding-left: 1rem; /* indent the text slightly */
+}
+
+.info-section ul li {
     margin: 0.5rem 0;
-  }
-  .info-section li:hover {
+    line-height: 1.4;
+}
+
+.info-section ul li:hover {
     color: var(--primary-color);
-  }
-  
-  
-  /* Education */
-  .education-item h3 {
+}
+
+/* Make project links stand out */
+.project-item a {
+    color: #f0f0f0;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+.project-item a:hover {
     color: var(--primary-color);
-    margin-bottom: 0.2rem;
-  }
-  .education-item p {
-    margin-bottom: 0.5rem; /* Adds space between each paragraph */
-  }
-  .education-item {
-    margin-bottom: 1rem;   /* Adds space below each education item */
-  }
-  
-  /* Footer */
-  footer {
+}
+
+/* Technical Skills - 2-column layout (optional) */
+.technical-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem 2rem;
+}
+
+/* Footer */
+footer {
     text-align: center;
     padding: 1rem;
     background-color: #1f1f1f;
     color: var(--text-color-light);
     margin-top: 2rem;
     font-size: 0.9rem;
-  }
-  
-  /* 
-    Responsive Layout 
-    (Adjust breakpoints if you like)
-  */
+}
 
-  .contact-btn {
-    display: inline-block;               /* so it can behave like a button */
-    text-decoration: none;               /* remove the underline */
-    background-color: var(--primary-color); 
-    color: #ffffff;                      /* set link text color (e.g., white) */
-    padding: 0.75rem 1.5rem;            
-    border-radius: 4px;                 
-    font-weight: bold;                  
-    transition: background-color 0.3s;  
+.contact-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
     margin-top: 1rem;
-  }
-  
-  .contact-btn:hover {
-    background-color: #e16f00;          /* slightly darker on hover */
-  }
-  
+}
 
-  @media (max-width: 768px) {
+.contact-btn:hover {
+    background-color: #e16f00;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
     nav {
       flex-direction: column;
       align-items: flex-start;
     }
-  
+
     .nav-right {
       display: flex;
       flex-direction: column;
       margin-top: 1rem;
     }
-  
+
     .nav-right a {
       margin: 0.5rem 0;
-    }
-  
-    a {
-        transition: color 0.3s;
-    }
-      
-    a:hover {
-        color: var(--primary-color);
     }
 
     main {
       padding: 1rem;
     }
-  }
-  
+
+    .technical-list {
+      grid-template-columns: 1fr; /* single column for smaller screens */
+    }
+}
