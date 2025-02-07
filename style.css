@@ -87,6 +87,23 @@ main {
     margin-bottom: 1.5rem;
 }
 
+.project-item a,
+.project-item a:visited {
+  color: #fff; /* White */
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.project-item a:hover {
+  color: var(--primary-color); /* Or any hover color you'd like */
+}
+
+.project-item p {
+    line-height: 1.6;  /* or 1.5, 1.7, etc. */
+    margin-bottom: 1rem; /* optional: adds extra spacing after paragraphs */
+  }
+
+
 .education-item h3, .experience-item h3, .project-item h3 {
     color: var(--primary-color);
     margin-bottom: 0.3rem;
