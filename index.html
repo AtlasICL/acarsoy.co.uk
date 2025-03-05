@@ -5,10 +5,8 @@
   <!-- Ensures proper rendering on mobile devices -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emre's Home</title>
-
   <!-- Link to the external CSS file -->
   <link rel="stylesheet" href="style.css" />
-
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="48x48" href="favicon.ico" />
   <!-- Apple Touch Icon for iOS -->
@@ -22,6 +20,8 @@
       <h1>Emre Acarsoy</h1>
     </div>
     <div class="nav-right">
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
       <a href="https://github.com/AtlasICL" target="_blank">GitHub</a>
       <a href="https://www.linkedin.com/in/emre-acarsoy" target="_blank">LinkedIn</a>
     </div>
@@ -36,99 +36,51 @@
       <p>
         I'm a Computer Science undergraduate with a strong foundation in Python and C++,
         and a keen interest in computer engineering and CPU architecture.  
-
         I'm looking to apply my technical skills in a role bridging software development and computer engineering.
       </p>
     </section>
 
-
-        <!-- Education Section -->
-        <section id="education" class="info-section">
-            <h2>Education</h2>
-      
-            <div class="education-item">
-              <h3>University of Exeter | BSc Computer Science</h3>
-              <p><b>Expected Graduation: 06/2027</b></p>
-              <ul>
-                <li>On track for First Class honours</li>
-                <li>Relevant modules include: Fundamentals of Machine Learning, Data Structures and Algorithms, Object-Oriented Programming</li>
-                <li>Achieved 4th place at the Exeter hackathon</li>
-              </ul>
-            </div>
-      
-            <div class="education-item">
-              <h3>Imperial College London | BEng Electrical Engineering</h3>
-              <p><b>Course not complete (2022 - 2023)</b></p>
-              <ul>
-                <li>Object-oriented programming in C++</li>
-                <li>Digital Electronics and Computer Architecture</li>
-                <li>Group design project - remote control server</li>
-              </ul>
-            </div>
-      
-            <div class="education-item">
-              <h3>Lycée Francais Charles de Gaulle | French baccalaureate</h3>
-              <p><b>2015 - 2022</b></p>
-              <ul>
-                <li>Specialty subjects: Mathematics, Physics, Chemistry</li>
-                <li>Graduated with distinction (félicitations du jury) 18.21/20</li>
-              </ul>
-            </div>
-          </section>
-
-
-        <!-- Technical Skills Section -->
-        <section id="technical-skills" class="info-section">
-            <h2>Technical Skills</h2>
-            <ul class="technical-list">
-            <li>Languages: C++, Python, Java</li>
-            <li>Version control - git</li>
-            <li>Data analysis and visualization: pandas, numpy, matplotlib, jupyter notebook</li>
-            <li>Machine learning: polynomial & logistic regression, dimensionality reduction (PCA, t-SNE, UMAP)</li>
-            </ul>
-        </section>
-  
-
-
-
-    <!-- Projects Section -->
-    <section id="projects" class="info-section">
-      <h2>Projects</h2>
-      <div class="project-item">
-        <h3>Fundamentals of Machine Learning</h3>
-        <p>
-            Built a Python-based logistic regression classifier using scikit-learn to classify handwritten digits.
-            Implemented advanced data cleaning, feature selection, and hyperparameter tuning to optimize results.
-        </p>
-        <p>
-            Implemented dimensionality reduction, using techniques such as PCA, t-SNE and UMAP.
-            Discussed the nuances of these techniques both for data visualisation and data preprocessing tasks.
-        </p>
-        <a href="https://github.com/AtlasICL/ML_Fundamentals" target="_blank">View on GitHub</a>
+    <!-- Education Section -->
+    <section id="education" class="info-section">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>University of Exeter | BSc Computer Science</h3>
+        <p><b>Expected Graduation: 06/2027</b></p>
+        <ul>
+          <li>On track for First Class honours</li>
+          <li>Relevant modules include: Fundamentals of Machine Learning, Data Structures and Algorithms, Object-Oriented Programming</li>
+          <li>Achieved 4th place at the Exeter hackathon</li>
+        </ul>
       </div>
-
-      <div class="project-item">
-        <h3>Electrical Engineering Group Design Project</h3>
-        <p>
-            Built a remote-controlled rover with the ability to detect infrared signals and measure their frequency, detect radio signals, and sense the polarity of magnetic fields.
-        </p>
-        <p>
-            Designed and implemented a filtering and amplification circuit for detection of infrared signals through a phototransistor.
-        </p>
-        <p>
-            Simulated the design in LT Spice software and prototyped on a breadboard.
-        </p>
-        <p>
-            Wrote and implemented Arduino code to digitally interface with infrared detection circuit.
-
-        </p>
-        <a href="https://github.com/AtlasICL/EE-Design-Project-Report" target="_blank">View on GitHub</a>
+      <div class="education-item">
+        <h3>Imperial College London | BEng Electrical Engineering</h3>
+        <p><b>Course not complete (2022 - 2023)</b></p>
+        <ul>
+          <li>Object-oriented programming in C++</li>
+          <li>Digital Electronics and Computer Architecture</li>
+          <li>Group design project - remote control server</li>
+        </ul>
+      </div>
+      <div class="education-item">
+        <h3>Lycée Francais Charles de Gaulle | French baccalaureate</h3>
+        <p><b>2015 - 2022</b></p>
+        <ul>
+          <li>Specialty subjects: Mathematics, Physics, Chemistry</li>
+          <li>Graduated with distinction (félicitations du jury) 18.21/20</li>
+        </ul>
       </div>
     </section>
 
-
-
-    
+    <!-- Technical Skills Section -->
+    <section id="technical-skills" class="info-section">
+      <h2>Technical Skills</h2>
+      <ul class="technical-list">
+        <li>Languages: C++, Python, Java</li>
+        <li>Version control - git</li>
+        <li>Data analysis and visualization: pandas, numpy, matplotlib, jupyter notebook</li>
+        <li>Machine learning: polynomial & logistic regression, dimensionality reduction (PCA, t-SNE, UMAP)</li>
+      </ul>
+    </section>
 
   </main>
 
@@ -138,5 +90,7 @@
     <p>© 2025 Emre Acarsoy</p>
   </footer>
 
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>

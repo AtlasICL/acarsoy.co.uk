@@ -46,6 +46,12 @@ nav h1 {
     color: var(--primary-color);
 }
 
+/* Active Navigation Link */
+nav a.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 /* Main Content */
 main {
     padding: 2rem;
@@ -70,11 +76,11 @@ main {
 
 /* Info Section */
 .info-section {
-    border: 1px solid #444;     /* Subtle border matching dark theme */
+    border: 1px solid #444;
     padding: 1.5rem;
     margin-bottom: 2rem;
-    border-radius: 6px;         
-    background-color: #1b1b1b;  /* Slightly lighter than body background */
+    border-radius: 6px;
+    background-color: #1b1b1b;
 }
 
 .info-section h2 {
@@ -89,20 +95,19 @@ main {
 
 .project-item a,
 .project-item a:visited {
-  color: #fff; /* White */
-  text-decoration: underline;
-  transition: color 0.3s;
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.3s;
 }
 
 .project-item a:hover {
-  color: var(--primary-color); /* Or any hover color you'd like */
+    color: var(--primary-color);
 }
 
 .project-item p {
-    line-height: 1.6;  /* or 1.5, 1.7, etc. */
-    margin-bottom: 1rem; /* optional: adds extra spacing after paragraphs */
-  }
-
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
 
 .education-item h3, .experience-item h3, .project-item h3 {
     color: var(--primary-color);
@@ -115,7 +120,7 @@ main {
 
 .info-section ul {
     list-style: none;
-    padding-left: 1rem; /* indent the text slightly */
+    padding-left: 1rem;
 }
 
 .info-section ul li {
@@ -127,18 +132,7 @@ main {
     color: var(--primary-color);
 }
 
-/* Make project links stand out */
-.project-item a {
-    color: #f0f0f0;
-    text-decoration: underline;
-    transition: color 0.3s;
-}
-
-.project-item a:hover {
-    color: var(--primary-color);
-}
-
-/* Technical Skills - 2-column layout (optional) */
+/* Technical Skills - 2-column layout */
 .technical-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -193,6 +187,6 @@ footer {
     }
 
     .technical-list {
-      grid-template-columns: 1fr; /* single column for smaller screens */
+      grid-template-columns: 1fr;
     }
 }
