@@ -9,35 +9,40 @@
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="style.css" />
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="48x48" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon.ico" />
     <!-- Apple Touch Icon for iOS -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="Emre Acarsoy's portfolio of computer science and engineering projects" />
+    <meta name="keywords" content="computer science, projects, portfolio, programming, Python, C++, machine learning" />
 </head>
 
 <body>
 
     <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-left">
-            <h1>Emre Acarsoy</h1>
-        </div>
-        <div class="nav-right">
-            <a href="index.html">Home</a>
-            <a href="projects.html">Projects</a>
-            <a href="https://github.com/AtlasICL" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/emre-acarsoy" target="_blank">LinkedIn</a>
-        </div>
-    </nav>
+    <header>
+        <nav aria-label="Main navigation">
+            <div class="nav-left">
+                <h1>Emre Acarsoy</h1>
+            </div>
+            <div class="nav-right">
+                <a href="index.html">Home</a>
+                <a href="projects.html" aria-current="page">Projects</a>
+                <a href="https://github.com/AtlasICL" target="_blank" aria-label="GitHub Profile (opens in new tab)">GitHub</a>
+                <a href="https://www.linkedin.com/in/emre-acarsoy" target="_blank" aria-label="LinkedIn Profile (opens in new tab)">LinkedIn</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
         <!-- Projects Section -->
-        <section id="projects" class="info-section">
-            <h2>Projects</h2>
+        <section id="projects" class="info-section" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Projects</h2>
 
 
             <!-- Lift Simulator -->
-            <div class="project-item">
+            <article class="project-item">
                 <h3>Custom lift simulator</h3>
                 <p>
                     Built a custom lift simulator in Python. Features a GUI and customisable parameters such as lift capacity, number of floors.
@@ -46,11 +51,11 @@
                     The project uses the tkinter library for the GUI.
                 </p>
                 <a href="https://github.com/AtlasICL/lift_simulator" target="_blank">View project on GitHub</a>
-            </div>
+            </article>
 
 
             <!-- Online Battleships Game -->
-            <div class="project-item">
+            <article class="project-item">
                 <h3>Web Player vs AI Battleships game</h3>
                 <p>
                     Built a web-based battleships game, where the user places their ships and battles an AI.
@@ -58,12 +63,15 @@
                 <p>
                     The project was built in Python using the Flask framework.
                 </p>
-            </div>
+                <p>
+                    Features include: drag-and-drop ship placement, intelligent AI opponent, and responsive game board design.
+                </p>
+            </article>
 
 
 
             <!-- Fundamentals of ML -->
-            <div class="project-item">
+            <article class="project-item">
                 <h3>Fundamentals of Machine Learning</h3>
                 <p>
                     Built a Python-based logistic regression classifier using scikit-learn to classify handwritten
@@ -76,12 +84,12 @@
                     Discussed the nuances of these techniques for both data visualisation and preprocessing tasks.
                 </p>
                 <a href="https://github.com/AtlasICL/ML_Fundamentals" target="_blank">View project on GitHub</a>
-            </div>
+            </article>
 
 
 
             <!-- EEE Year 1 Project -->
-            <div class="project-item">
+            <article class="project-item">
                 <h3>Electrical Engineering Group Design Project</h3>
                 <p>
                     Built a remote-controlled rover capable of detecting infrared signals, measuring frequency,
@@ -98,7 +106,7 @@
                     Developed and implemented Arduino code to digitally interface with the infrared detection circuit.
                 </p>
                 <a href="https://github.com/AtlasICL/EE-Design-Project-Report" target="_blank">View report on GitHub</a>
-            </div>
+            </article>
         </section>
     </main>
 
@@ -106,8 +114,10 @@
 
     <!-- Footer -->
     <footer>
-        <p>Email me: e (dot) acarsoy (at) proton (dot) me</p>
-        <p>© 2025 Emre Acarsoy</p>
+        <div class="footer-content">
+            <p>Contact: <span class="email-protect">e (dot) acarsoy (at) proton (dot) me</span></p>
+            <p>© 2025 Emre Acarsoy. All rights reserved.</p>
+        </div>
     </footer>
 
 

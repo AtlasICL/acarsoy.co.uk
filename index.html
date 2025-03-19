@@ -11,28 +11,33 @@
   <link rel="icon" type="image/png" sizes="48x48" href="img/favicon.ico" />
   <!-- Apple Touch Icon for iOS -->
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <!-- Meta tags for SEO -->
+  <meta name="description" content="Emre Acarsoy's personal portfolio showcasing computer science and engineering skills" />
+  <meta name="keywords" content="computer science, portfolio, programming, Python, C++, machine learning" />
 </head>
 <body>
 
   <!-- Navigation Bar -->
-  <nav>
-    <div class="nav-left">
-      <h1>Emre Acarsoy</h1>
-    </div>
-    <div class="nav-right">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="https://github.com/AtlasICL" target="_blank">GitHub</a>
-      <a href="https://www.linkedin.com/in/emre-acarsoy" target="_blank">LinkedIn</a>
-    </div>
-  </nav>
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="nav-left">
+        <h1>Emre Acarsoy</h1>
+      </div>
+      <div class="nav-right">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="https://github.com/AtlasICL" target="_blank" aria-label="GitHub Profile (opens in new tab)">GitHub</a>
+        <a href="https://www.linkedin.com/in/emre-acarsoy" target="_blank" aria-label="LinkedIn Profile (opens in new tab)">LinkedIn</a>
+      </div>
+    </nav>
+  </header>
 
   <!-- Main Content -->
   <main>
 
     <!-- Introduction Section -->
-    <section class="intro">
-      <h2>Hello! I'm Emre.</h2>
+    <section class="intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">Hello! I'm Emre.</h2>
       <p>
         I'm a Computer Science undergraduate with a strong foundation in Python and C++,
         and a keen interest in computer engineering and CPU architecture.  
@@ -90,8 +95,10 @@
 
   <!-- Footer -->
   <footer>
-    <p>Email me: e (dot) acarsoy (at) proton (dot) me</p>
-    <p>© 2025 Emre Acarsoy</p>
+    <div class="footer-content">
+      <p>Contact: <span class="email-protect">e (dot) acarsoy (at) proton (dot) me</span></p>
+      <p>© 2025 Emre Acarsoy. All rights reserved.</p>
+    </div>
   </footer>
 
   <!-- JavaScript -->

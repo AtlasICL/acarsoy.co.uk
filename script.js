@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname.split('/').pop();
   
     navLinks.forEach(link => {
-      // Compare the href attribute (if it points to a local page) with the current page filename
+      // Compare the href attribute with the current page filename
       const linkHref = link.getAttribute('href');
       if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
-        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else if (link.hasAttribute('aria-current')) {
+        link.removeAttribute('aria-current');
       }
     });
   });
