@@ -133,7 +133,10 @@ main {
 
 /* Project Items */
 .project-item {
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--border-color);
 }
@@ -143,11 +146,59 @@ main {
     margin-bottom: 0;
 }
 
+.project-content {
+    position: relative;
+    padding-right: 150px; /* Space for the GitHub button */
+}
+
+.project-content h3 {
+    margin-bottom: 1rem;
+    padding-right: 50px; /* Ensure title doesn't overlap with button on small screens */
+}
+
+/* Project Images */
+.project-images {
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.project-images img {
+    width: 75%; /* Reduced from 100% to 75% (25% smaller) */
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: contain;
+    max-height: 500px;
+}
+
+.project-images img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Image gallery for multiple images */
+.image-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 75%; /* Make the gallery container 75% of its parent */
+}
+
+.image-gallery img {
+    width: 100%; /* Full width within the gallery grid cells */
+}
+
 .project-item a {
     color: #fff;
     text-decoration: underline;
-    display: inline-block;
-    margin-top: 0.5rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+    white-space: nowrap;
 }
 
 .project-item a:hover {
@@ -226,7 +277,45 @@ footer {
   Responsive Layout
   ---------------
 */
+@media (max-width: 1024px) {
+    /* Tweak image gallery for slightly smaller screens */
+    .image-gallery {
+        gap: 0.75rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .project-content {
+        padding-right: 0; /* Remove padding on small screens */
+    }
+    
+    .project-content h3 {
+        padding-right: 0; /* Remove padding on small screens */
+    }
+    
+    .project-item a {
+        position: static;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        display: block;
+        text-align: right;
+    }
+    
+    .project-item {
+        gap: 1rem;
+    }
+    
+    .project-images img {
+        width: 85%; /* Slightly larger on smaller screens */
+        max-height: none;
+    }
+    
+    .image-gallery {
+        width: 85%; /* Slightly larger on smaller screens */
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+    
     nav {
         flex-direction: column;
         align-items: flex-start;
@@ -265,5 +354,17 @@ footer {
     
     .info-section {
         padding: 1rem;
+    }
+    
+    .project-images {
+        margin: 0 -0.5rem;
+    }
+    
+    .image-gallery {
+        gap: 0.5rem;
+    }
+    
+    .project-images img {
+        border-radius: 4px;
     }
 }
