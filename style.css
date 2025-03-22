@@ -191,6 +191,30 @@ main {
     width: 100%; /* Full width within the gallery grid cells */
 }
 
+/* Ensure captions don't break the gallery layout */
+.image-gallery > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Image captions */
+.image-caption {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+    font-style: italic;
+    max-width: 90%; /* Prevent extremely long captions from overflowing */
+}
+
+/* Mobile adjustments for captions */
+@media (max-width: 768px) {
+    .image-caption {
+        font-size: 0.8rem;
+    }
+}
+
 .project-item a {
     color: #fff;
     text-decoration: underline;
@@ -367,4 +391,9 @@ footer {
     .project-images img {
         border-radius: 4px;
     }
+}
+
+/* Adjust spacing between multiple image sections */
+.project-images + .project-images {
+    margin-top: 1.5rem;
 }
