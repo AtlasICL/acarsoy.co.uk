@@ -71,7 +71,7 @@ a:hover {
 /* Header & Navigation */
 header {
     background-color: var(--dark-color);
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -100,12 +100,12 @@ nav h1 {
 
 .nav-right a {
     color: var(--text-color-light);
-    margin-left: 1rem;
+    margin-left: 1.5rem;
     position: relative;
     font-size: 1.2rem;
     font-weight: 500;
     line-height: 1.2;
-    padding: 0.1rem 0;
+    padding: 0.2rem 0;
 }
 
 .nav-right a:hover,
@@ -409,7 +409,7 @@ footer {
 
     nav h1 {
         font-size: 1.8rem; /* Slightly smaller on mobile */
-        margin: 0 0 0.4rem 0; /* Only add bottom margin */
+        margin: 0 0 0.5rem 0; /* Increased from 0.4rem to 0.5rem */
     }
 
     .nav-right {
@@ -422,7 +422,7 @@ footer {
 
     .nav-right a {
         margin: 0;
-        padding: 0.2rem 0;
+        padding: 0.3rem 0; /* Increased from 0.2rem to 0.3rem */
         font-size: 1.1rem; /* Slightly smaller on mobile */
         height: 100%;
     }
