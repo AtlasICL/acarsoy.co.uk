@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Docs</title>
+
+  <!-- Your site’s global stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- GitHub‑style Markdown CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
+
+  <!-- Highlight.js theme (browser bundle) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+
+  <style>
+    body {
+      margin: 2em;
+      background: #f6f8fa;
+    }
+    .markdown-body {
+      box-sizing: border-box;
+      max-width: 800px;
+      margin: auto;
+      padding: 2em;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.1);
+    }
+    .docs-nav {
+      display: flex;
+      gap: 1em;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5em;
+      margin: 1em auto;
+      max-width: 800px;
+      justify-content: center;
+    }
+    .docs-nav a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: 500;
+      padding: 0.25em 0.5em;
+    }
+    .docs-nav a.active {
+      border-bottom: 2px solid #0366d6;
+      color: #0366d6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main nav -->
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="nav-left">
+        <h1>Emre Acarsoy</h1>
+      </div>
+      <div class="nav-right">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="docs.html" aria-current="page">Docs</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Docs sub‑tabs -->
+  <div class="docs-nav">
+    <a href="#" data-md="docs_landing_page.md" class="active">Overview</a>
+    <a href="#" data-md="src/git.md">Git</a>
+    <a href="#" data-md="src/python.md">Python</a>
+    <a href="#" data-md="src/ssh.md">SSH</a>
+  </div>
+
+  <!-- Markdown rendering target -->
+  <article class="markdown-body" id="content">
+    <p>Loading…</p>
+  </article>
+
+  <!-- Marked.js for parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Highlight.js browser bundle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+  <script>
+    // Generate header IDs for in-page anchors
+    marked.setOptions({
+      gfm: true,
+      headerIds: true,
+      headerPrefix: '',
+      mangle: false
+    });
+
+    // Scroll to an element with the given ID
+    function scrollToAnchor(anchor) {
+      if (!anchor) return;
+      const el = document.getElementById(anchor);
+      if (el) el.scrollIntoView();
+    }
+
+    // Load & render a markdown file, then optionally jump to an anchor
+    function loadMarkdown(file, anchor) {
+      const c = document.getElementById('content');
+      c.innerHTML = '<p>Loading…</p>';
+      fetch('./' + file)
+        .then(r => {
+          if (!r.ok) throw new Error(r.status + ' ' + r.statusText);
+          return r.text();
+        })
+        .then(md => {
+          c.innerHTML = marked.parse(md);
+          c.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
+          if (anchor) scrollToAnchor(anchor);
+        })
+        .catch(err => {
+          c.innerText = 'Error loading docs: ' + err;
+        });
+    }
+
+    // Handle clicks on the top “Docs” tabs
+    document.querySelectorAll('.docs-nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelectorAll('.docs-nav a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
+        history.replaceState(null, '', '#' + link.dataset.md);
+        loadMarkdown(link.dataset.md, null);
+      });
+    });
+
+    // ─── NEW: intercept clicks INSIDE the rendered markdown ───
+    document.getElementById('content').addEventListener('click', e => {
+      const a = e.target.closest('a');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (href && /\.md(#.*)?$/.test(href)) {
+        e.preventDefault();
+        const [file, anchor] = href.split('#');
+        const tab = document.querySelector(`.docs-nav a[data-md="${file}"]`);
+        if (tab) {
+          document.querySelectorAll('.docs-nav a').forEach(x => x.classList.remove('active'));
+          tab.classList.add('active');
+        }
+        history.replaceState(null, '', '#' + file + (anchor ? '#' + anchor : ''));
+        loadMarkdown(file, anchor);
+      }
+    });
+
+    // On initial load: pick the tab (and anchor) from the hash or default to Overview
+    window.addEventListener('DOMContentLoaded', () => {
+      const full = location.hash.slice(1);
+      const [file, anchor] = full.split('#');
+      const starter = document.querySelector(`.docs-nav a[data-md="${file}"]`)
+                    || document.querySelector('.docs-nav a');
+      document.querySelectorAll('.docs-nav a').forEach(a => a.classList.remove('active'));
+      starter.classList.add('active');
+      loadMarkdown(starter.dataset.md, anchor);
+    });
+  </script>
+</body>
+</html>
