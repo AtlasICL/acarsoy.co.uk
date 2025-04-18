@@ -234,6 +234,16 @@
                     };
                 }
             });
+            
+            // Fix image paths
+            document.querySelectorAll('#content img').forEach(img => {
+                const src = img.getAttribute('src');
+                if (src && src.startsWith('images/')) {
+                    // Get the directory of the current file
+                    const currentDir = currentFile.substring(0, currentFile.lastIndexOf('/') + 1);
+                    img.src = currentDir + src;
+                }
+            });
         }
 
         function loadMarkdown(file, anchor) {
