@@ -120,26 +120,36 @@
         // Load and initialize libraries
         function initLibraries() {
             if (window.marked) {
-                window.marked.setOptions({
-                    gfm: true,
-                    headerIds: true,
-                    headerPrefix: '',
-                    mangle: false,
-                    breaks: true
-                });
-                
-                // Add a custom renderer to properly handle header IDs
-                const renderer = new marked.Renderer();
-                renderer.heading = function(text, level) {
-                    const escapedText = text.toLowerCase()
-                                          .replace(/[^\w\s-]/g, '')
-                                          .replace(/\s+/g, '-');
-                    return `<h${level} id="${escapedText}">
-                            ${text}
-                          </h${level}>`;
-                };
-                marked.use({ renderer });
-                
+                try {
+                    window.marked.setOptions({
+                        gfm: true,
+                        headerIds: true,
+                        headerPrefix: '',
+                        mangle: false,
+                        breaks: true
+                    });
+                    
+                    // Add a custom renderer to properly handle header IDs
+                    const renderer = new marked.Renderer();
+                    renderer.heading = function(text, level) {
+                        // Ensure text is a string before calling toLowerCase
+                        const textStr = String(text);
+                        const escapedText = textStr.toLowerCase()
+                                              .replace(/[^\w\s-]/g, '')
+                                              .replace(/\s+/g, '-');
+                        return `<h${level} id="${escapedText}">
+                                ${text}
+                              </h${level}>`;
+                    };
+                    marked.use({ renderer });
+                } catch (e) {
+                    console.error('Error configuring marked.js:', e);
+                    // Fall back to default marked configuration
+                    window.marked.setOptions({
+                        gfm: true,
+                        breaks: true
+                    });
+                }
                 markedLoaded = true;
             }
             
@@ -164,8 +174,12 @@
         }, 100);
 
         function scrollToAnchor(id) {
+            // Ensure id is a string
+            if (!id) return false;
+            const idStr = String(id);
+            
             // First try finding by ID
-            const el = document.getElementById(id);
+            const el = document.getElementById(idStr);
             if (el) {
                 el.scrollIntoView({ behavior: 'smooth' });
                 return true;
@@ -174,14 +188,19 @@
             // If not found by ID, try finding headers with matching text
             const headers = contentEl.querySelectorAll('h1, h2, h3, h4, h5, h6');
             for (const header of headers) {
-                // Create a slug from the header text similar to how markdown does it
-                const slug = header.textContent.trim().toLowerCase()
-                    .replace(/[^\w\s-]/g, '') // Remove special chars
-                    .replace(/\s+/g, '-');    // Replace spaces with hyphens
-                
-                if (slug === id || encodeURIComponent(slug) === id) {
-                    header.scrollIntoView({ behavior: 'smooth' });
-                    return true;
+                try {
+                    // Create a slug from the header text similar to how markdown does it
+                    const headerText = String(header.textContent || '');
+                    const slug = headerText.trim().toLowerCase()
+                        .replace(/[^\w\s-]/g, '') // Remove special chars
+                        .replace(/\s+/g, '-');    // Replace spaces with hyphens
+                    
+                    if (slug === idStr || encodeURIComponent(slug) === idStr) {
+                        header.scrollIntoView({ behavior: 'smooth' });
+                        return true;
+                    }
+                } catch (e) {
+                    console.error('Error processing header:', e);
                 }
             }
             
@@ -247,6 +266,9 @@
             });
         }
 
+        // Add cache version to handle updates
+        const CACHE_VERSION = '1.0.1';
+        
         function loadMarkdown(file, anchor) {
             // If libraries aren't loaded yet, save this load for later
             if (!markedLoaded || !hlsjsLoaded) {
@@ -259,11 +281,20 @@
             contentEl.innerHTML = '<div class="loading-indicator">Loading content...</div>';
             
             // Use a cached version if available
-            const cachedContent = sessionStorage.getItem('docs_cache_' + file);
+            const cacheKey = 'docs_cache_' + CACHE_VERSION + '_' + file;
+            const cachedContent = sessionStorage.getItem(cacheKey);
             if (cachedContent) {
                 contentEl.innerHTML = cachedContent;
-                if (anchor) setTimeout(() => scrollToAnchor(anchor), 0);
+                if (anchor) setTimeout(() => scrollToAnchor(anchor), 100);
                 return;
+            }
+
+            // Clear any old cache entries
+            for (let i = 0; i < sessionStorage.length; i++) {
+                const key = sessionStorage.key(i);
+                if (key && key.startsWith('docs_cache_') && !key.includes(CACHE_VERSION)) {
+                    sessionStorage.removeItem(key);
+                }
             }
 
             fetch('./' + file)
@@ -272,22 +303,28 @@
                     return r.text();
                 })
                 .then(md => {
-                    const parsedHtml = marked.parse(md);
-                    contentEl.innerHTML = parsedHtml;
-                    
-                    // Cache the result for future use
-                    sessionStorage.setItem('docs_cache_' + file, parsedHtml);
-                    
-                    // Apply syntax highlighting only to visible code blocks
-                    setTimeout(() => {
-                        contentEl.querySelectorAll('pre code').forEach(block => {
-                            hljs.highlightElement(block);
-                        });
+                    try {
+                        const parsedHtml = marked.parse(md);
+                        contentEl.innerHTML = parsedHtml;
                         
-                        if (anchor) setTimeout(() => scrollToAnchor(anchor), 100);
-                    }, 0);
+                        // Cache the result for future use
+                        sessionStorage.setItem(cacheKey, parsedHtml);
+                        
+                        // Apply syntax highlighting only to visible code blocks
+                        setTimeout(() => {
+                            contentEl.querySelectorAll('pre code').forEach(block => {
+                                hljs.highlightElement(block);
+                            });
+                            
+                            if (anchor) setTimeout(() => scrollToAnchor(anchor), 100);
+                        }, 0);
+                    } catch (err) {
+                        console.error('Error parsing markdown:', err);
+                        contentEl.innerHTML = '<div class="loading-indicator">Error parsing markdown: ' + err.message + '</div>';
+                    }
                 })
                 .catch(err => { 
+                    console.error('Error loading docs:', err);
                     contentEl.innerHTML = '<div class="loading-indicator">Error loading docs: ' + err + '</div>';
                 });
         }
