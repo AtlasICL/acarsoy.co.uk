@@ -29,15 +29,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 350px; /* Adjusted for better layout */
         }
         
         /* Slideshow container */
         .slideshow-container {
-            max-width: 70%; /* Reduced from 100% to make images smaller */
+            max-width: 60%; /* Reduced to make space for arrows */
             position: relative;
             margin: auto;
             /* Add minimum height to ensure arrows have space */
-            min-height: 300px;
+            min-height: 280px; /* Adjusted for better layout */
             background-color: transparent;
             display: flex;
             align-items: center;
@@ -79,8 +80,8 @@
         .prev, .next {
             cursor: pointer;
             position: absolute;
-            top: 50%;
-            transform: translateY(-30px); /* Adjusted value to center vertically */
+            /* More central vertical positioning */
+            top: 175px; /* More centered vertically */
             width: 50px;
             height: 50px;
             line-height: 50px;
@@ -102,14 +103,12 @@
 
         /* Position the "previous button" to the left */
         .prev {
-            left: -60px; /* Positioned absolutely */
-            margin-left: 0;
+            left: -0px; /* Closer to the image, matching right arrow distance */
         }
 
         /* Position the "next button" to the right */
         .next {
-            right: -60px; /* Positioned absolutely */
-            margin-right: 0;
+            right: -40px; /* Consistent with left arrow */
         }
 
         /* On hover, add a black background color with a little bit see-through */
@@ -155,21 +154,24 @@
                 max-width: 90%;
             }
             
+            .slideshow-container {
+                max-width: 70%; /* Adjust for mobile */
+            }
+            
             .prev, .next {
                 width: 40px;
                 height: 40px;
                 line-height: 40px;
                 font-size: 18px;
+                top: 150px; /* Adjust for mobile */
             }
             
             .prev {
-                margin-left: 0;
-                left: 10px;
+                left: -20px; /* Keep consistent with right arrow on mobile */
             }
             
             .next {
-                margin-right: 0;
-                right: 10px;
+                right: -20px; /* Keep consistent with left arrow on mobile */
             }
             
             .dot {
@@ -355,12 +357,6 @@
         // Initialize the slideshow by setting the first dot as active
         document.addEventListener('DOMContentLoaded', function() {
             showSlides(slideIndex);
-            
-            // Initial positioning
-            positionArrows();
-            
-            // Handle window resize for arrow positioning
-            window.addEventListener('resize', positionArrows);
         });
         
         // Next/previous controls
@@ -371,31 +367,6 @@
         // Thumbnail image controls
         function currentSlide(n) {
             showSlides(slideIndex = n);
-        }
-        
-        // Centers the arrows based on the active image
-        function positionArrows() {
-            setTimeout(() => {
-                const activeSlide = document.querySelector('.slide[style*="display: block"]');
-                if (activeSlide) {
-                    const activeImg = activeSlide.querySelector('img');
-                    if (activeImg) {
-                        const imgHeight = activeImg.clientHeight;
-                        const prevBtn = document.querySelector('.prev');
-                        const nextBtn = document.querySelector('.next');
-                        
-                        // Position both buttons based on image height
-                        const topPosition = (imgHeight / 2) - 25;
-                        
-                        if (prevBtn) prevBtn.style.top = `${topPosition}px`;
-                        if (nextBtn) nextBtn.style.top = `${topPosition}px`;
-                        
-                        // Reset transform since we're using absolute positioning
-                        if (prevBtn) prevBtn.style.transform = 'none';
-                        if (nextBtn) nextBtn.style.transform = 'none';
-                    }
-                }
-            }, 100); // Small delay to allow image to load
         }
         
         function showSlides(n) {
@@ -420,9 +391,6 @@
             // Show the current slide and activate current dot
             slides[slideIndex-1].style.display = "block";
             dots[slideIndex-1].className += " active-dot";
-            
-            // Re-position arrows based on newly displayed image
-            positionArrows();
         }
     </script>
 </body>
