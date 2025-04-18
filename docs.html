@@ -87,6 +87,7 @@
                 <a href="index.html">Home</a>
                 <a href="projects.html">Projects</a>
                 <a href="docs.html" aria-current="page">Docs</a>
+                <a href="music.html">Music</a>
             </div>
         </nav>
     </header>
@@ -126,6 +127,19 @@
                     mangle: false,
                     breaks: true
                 });
+                
+                // Add a custom renderer to properly handle header IDs
+                const renderer = new marked.Renderer();
+                renderer.heading = function(text, level) {
+                    const escapedText = text.toLowerCase()
+                                          .replace(/[^\w\s-]/g, '')
+                                          .replace(/\s+/g, '-');
+                    return `<h${level} id="${escapedText}">
+                            ${text}
+                          </h${level}>`;
+                };
+                marked.use({ renderer });
+                
                 markedLoaded = true;
             }
             
@@ -150,8 +164,28 @@
         }, 100);
 
         function scrollToAnchor(id) {
+            // First try finding by ID
             const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+                return true;
+            }
+            
+            // If not found by ID, try finding headers with matching text
+            const headers = contentEl.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            for (const header of headers) {
+                // Create a slug from the header text similar to how markdown does it
+                const slug = header.textContent.trim().toLowerCase()
+                    .replace(/[^\w\s-]/g, '') // Remove special chars
+                    .replace(/\s+/g, '-');    // Replace spaces with hyphens
+                
+                if (slug === id || encodeURIComponent(slug) === id) {
+                    header.scrollIntoView({ behavior: 'smooth' });
+                    return true;
+                }
+            }
+            
+            return false;
         }
 
         function toDocsSrc(path) {
@@ -250,7 +284,7 @@
                             hljs.highlightElement(block);
                         });
                         
-                        if (anchor) scrollToAnchor(anchor);
+                        if (anchor) setTimeout(() => scrollToAnchor(anchor), 100);
                     }, 0);
                 })
                 .catch(err => { 
