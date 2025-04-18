@@ -183,7 +183,8 @@
             gfm: true,
             headerIds: true,
             headerPrefix: '',
-            mangle: false
+            mangle: false,
+            breaks: true
         });
 
         function scrollToAnchor(id) {
@@ -194,8 +195,24 @@
         function toDocsSrc(path) {
             // if it already starts with docs_src/ leave it
             if (path.startsWith('docs_src/')) return path;
-            // strip an old src/ prefix if present, then prepend docs_src/
-            return 'docs_src/' + path.replace(/^src\//, '');
+            // strip an old src/ prefix if present
+            path = path.replace(/^src\//, '');
+            // Handle relative links within markdown files
+            if (path.startsWith('./')) {
+                // Get the directory of the current file
+                const currentDir = currentFile.substring(0, currentFile.lastIndexOf('/') + 1);
+                return currentDir + path.substring(2);
+            }
+            // Check if it's a simple filename without path
+            if (!path.includes('/') && path.endsWith('.md')) {
+                // If it's just a filename.md, assume it's in the same directory as current file
+                if (currentFile.includes('/')) {
+                    const currentDir = currentFile.substring(0, currentFile.lastIndexOf('/') + 1);
+                    return currentDir + path;
+                }
+            }
+            // Otherwise, prepend docs_src/
+            return 'docs_src/' + path;
         }
 
         function bindContentLinks() {
