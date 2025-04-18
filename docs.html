@@ -9,12 +9,6 @@
     <!-- Your global dark theme -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- GitHub‑style Markdown base -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css">
-
-    <!-- Highlight.js theme -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="48x48" href="img/favicon.ico" />
     <!-- Apple Touch Icon for iOS -->
@@ -23,13 +17,17 @@
     <meta name="description" content="Documentation for programming tools and technologies" />
     <meta name="keywords" content="documentation, programming, git, python, ssh, technical docs" />
 
+    <!-- GitHub‑style Markdown base - load asynchronously -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5/github-markdown.min.css" media="print" onload="this.media='all'">
+
+    <!-- Highlight.js theme - load asynchronously -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" media="print" onload="this.media='all'">
+
     <style>
-        /* Markdown container matching your cards */
+        /* Critical CSS for initial render */
         .markdown-body {
             background: #fdf6e3;
-            /* light cream */
             color: #111 !important;
-            /* rich dark text */
             max-width: 800px;
             margin: 2em auto;
             padding: 2em;
@@ -38,97 +36,20 @@
             box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
         }
 
-        /* Ensure all text is dark */
-        .markdown-body,
-        .markdown-body h1,
-        .markdown-body h2,
-        .markdown-body h3,
-        .markdown-body h4,
-        .markdown-body p,
-        .markdown-body li,
-        .markdown-body th,
-        .markdown-body td,
-        .markdown-body blockquote {
-            color: #111 !important;
-        }
-
-        /* Accent links */
-        .markdown-body a {
-            color: var(--primary-color);
-            transition: color 0.3s;
-        }
-
-        .markdown-body a:hover {
-            color: var(--hover-color);
-        }
-
-        /* Inline code on cream background */
-        .markdown-body code {
-            background: white;
-            /* subtle light gray/cream */
-            color: var(--dark-color);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
-
-        /* Code blocks also use a light background */
-        .markdown-body pre code {
-            display: block;
-            background: white;
-            /* same light shade */
-            color: #111;
-            padding: 1rem;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 4px;
-            overflow: auto;
-        }
-
-
-        /* Blockquotes */
-        .markdown-body blockquote {
-            border-left: 4px solid var(--primary-color);
-            margin: 1rem 0;
-            padding-left: 1rem;
-            color: #ccc;
-        }
-
-        /* Tables */
-        .markdown-body table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
-        }
-
-        .markdown-body th,
-        .markdown-body td {
-            border: 1px solid var(--border-color);
-            padding: 0.5rem;
-        }
-
-        .markdown-body th {
-            background: var(--dark-color);
-            color: var(--primary-color);
-        }
-
-        /* Docs sub‑tab bar */
         /* Docs sub‑tab bar */
         .docs-nav {
             max-width: 800px;
             margin: 0.5rem auto;
-            /* less top space */
             display: flex;
             gap: 1rem;
             justify-content: center;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0;
-            /* remove extra bottom padding */
         }
 
         .docs-nav a {
             font-size: 1.3rem;
-            /* larger label text */
             padding: 0.2rem 0.5rem;
-            /* tighter vertically */
             color: var(--text-color-light);
             text-decoration: none;
             transition: color 0.3s;
@@ -140,12 +61,16 @@
 
         .docs-nav a.active {
             background: none;
-            /* no background fill */
             color: var(--primary-color);
             border-bottom: 3px solid var(--primary-color);
-            /* underline */
             padding-bottom: 0;
-            /* align underline close to text */
+        }
+        
+        /* Loading indicator */
+        .loading-indicator {
+            text-align: center;
+            padding: 2em;
+            color: var(--text-color-light);
         }
     </style>
 </head>
@@ -176,28 +101,57 @@
 
     <!-- Markdown rendering target -->
     <article class="markdown-body" id="content">
-        <p>Loading…</p>
+        <div class="loading-indicator">Loading...</div>
     </article>
 
-    <!-- Marked.js for parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- Highlight.js bundle -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <!-- Load scripts at end of body and defer non-critical scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" defer></script>
 
     <script>
+        // Cache DOM elements
+        const contentEl = document.getElementById('content');
         let currentFile = '';
+        let markedLoaded = false;
+        let hlsjsLoaded = false;
+        let pendingLoad = null;
 
-        marked.setOptions({
-            gfm: true,
-            headerIds: true,
-            headerPrefix: '',
-            mangle: false,
-            breaks: true
-        });
+        // Load and initialize libraries
+        function initLibraries() {
+            if (window.marked) {
+                window.marked.setOptions({
+                    gfm: true,
+                    headerIds: true,
+                    headerPrefix: '',
+                    mangle: false,
+                    breaks: true
+                });
+                markedLoaded = true;
+            }
+            
+            if (window.hljs) {
+                hlsjsLoaded = true;
+            }
+            
+            // Process any pending load
+            if (pendingLoad && markedLoaded && hlsjsLoaded) {
+                loadMarkdown(pendingLoad.file, pendingLoad.anchor);
+                pendingLoad = null;
+            }
+        }
+        
+        // Check if libraries are loaded every 100ms
+        const libCheckInterval = setInterval(() => {
+            if (!markedLoaded || !hlsjsLoaded) {
+                initLibraries();
+            } else {
+                clearInterval(libCheckInterval);
+            }
+        }, 100);
 
         function scrollToAnchor(id) {
             const el = document.getElementById(id);
-            if (el) el.scrollIntoView();
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
         }
 
         function toDocsSrc(path) {
@@ -223,55 +177,85 @@
             return 'docs_src/' + path;
         }
 
-        function bindContentLinks() {
-            document.querySelectorAll('#content a').forEach(a => {
-                const href = a.getAttribute('href');
-                if (!href) return;
-
-                const mdMatch = href.match(/^(.+\.md)(?:#(.+))?$/);
-                if (mdMatch) {
-                    a.onclick = e => {
+        // Use event delegation instead of attaching to each link
+        function setupContentClickHandler() {
+            contentEl.addEventListener('click', (e) => {
+                // Only handle clicks on links
+                if (e.target.tagName === 'A') {
+                    const href = e.target.getAttribute('href');
+                    if (!href) return;
+                    
+                    const mdMatch = href.match(/^(.+\.md)(?:#(.+))?$/);
+                    if (mdMatch) {
                         e.preventDefault();
-
-                        /* normalise the file path */
+                        
+                        /* normalize the file path */
                         const file = toDocsSrc(mdMatch[1]);
                         const anchor = mdMatch[2] || null;
-
+                        
                         /* highlight matching tab if we have it */
                         const tab = document.querySelector(`.docs-nav a[data-md="${file}"]`);
                         if (tab) {
                             document.querySelectorAll('.docs-nav a').forEach(x => x.classList.remove('active'));
                             tab.classList.add('active');
                         }
-
+                        
                         /* update URL & load */
                         history.replaceState(null, '', '#' + file + (anchor ? '#' + anchor : ''));
                         loadMarkdown(file, anchor);
-                    };
-                } else if (href.startsWith('#')) {
-                    a.onclick = e => {
+                    } else if (href.startsWith('#')) {
                         e.preventDefault();
                         const section = href.slice(1);
                         scrollToAnchor(section);
                         history.replaceState(null, '', '#' + currentFile + '#' + section);
-                    };
+                    }
                 }
             });
         }
 
         function loadMarkdown(file, anchor) {
+            // If libraries aren't loaded yet, save this load for later
+            if (!markedLoaded || !hlsjsLoaded) {
+                pendingLoad = { file, anchor };
+                contentEl.innerHTML = '<div class="loading-indicator">Loading libraries...</div>';
+                return;
+            }
+            
             currentFile = file;
-            const c = document.getElementById('content');
-            c.innerHTML = '<p>Loading…</p>';
+            contentEl.innerHTML = '<div class="loading-indicator">Loading content...</div>';
+            
+            // Use a cached version if available
+            const cachedContent = sessionStorage.getItem('docs_cache_' + file);
+            if (cachedContent) {
+                contentEl.innerHTML = cachedContent;
+                if (anchor) setTimeout(() => scrollToAnchor(anchor), 0);
+                return;
+            }
+
             fetch('./' + file)
-                .then(r => { if (!r.ok) throw new Error(r.status); return r.text() })
-                .then(md => {
-                    c.innerHTML = marked.parse(md);
-                    c.querySelectorAll('pre code').forEach(b => hljs.highlightElement(b));
-                    bindContentLinks();
-                    if (anchor) scrollToAnchor(anchor);
+                .then(r => { 
+                    if (!r.ok) throw new Error(r.status); 
+                    return r.text();
                 })
-                .catch(err => { c.innerText = 'Error loading docs: ' + err });
+                .then(md => {
+                    const parsedHtml = marked.parse(md);
+                    contentEl.innerHTML = parsedHtml;
+                    
+                    // Cache the result for future use
+                    sessionStorage.setItem('docs_cache_' + file, parsedHtml);
+                    
+                    // Apply syntax highlighting only to visible code blocks
+                    setTimeout(() => {
+                        contentEl.querySelectorAll('pre code').forEach(block => {
+                            hljs.highlightElement(block);
+                        });
+                        
+                        if (anchor) scrollToAnchor(anchor);
+                    }, 0);
+                })
+                .catch(err => { 
+                    contentEl.innerHTML = '<div class="loading-indicator">Error loading docs: ' + err + '</div>';
+                });
         }
 
         function activateTab(tab) {
@@ -279,15 +263,17 @@
             tab.classList.add('active');
         }
 
-        document.querySelectorAll('.docs-nav a').forEach(link => {
-            link.addEventListener('click', e => {
+        // Set up event delegation for docs tabs
+        document.querySelector('.docs-nav').addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
                 e.preventDefault();
-                activateTab(link);
-                history.replaceState(null, '', '#' + link.dataset.md);
-                loadMarkdown(link.dataset.md, null);
-            });
+                activateTab(e.target);
+                history.replaceState(null, '', '#' + e.target.dataset.md);
+                loadMarkdown(e.target.dataset.md, null);
+            }
         });
 
+        // Handle hash changes
         window.addEventListener('hashchange', () => {
             const full = location.hash.slice(1);
             const m = full.match(/^(.+\.md)(?:#(.+))?$/);
@@ -301,7 +287,10 @@
             }
         });
 
-        window.addEventListener('DOMContentLoaded', () => {
+        // Initialize on DOM content loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            setupContentClickHandler();
+            
             const full = location.hash.slice(1);
             const m = full.match(/^(.+\.md)(?:#(.+))?$/);
             let file = m ? m[1] : document.querySelector('.docs-nav a').dataset.md;
@@ -309,7 +298,12 @@
             const starter = document.querySelector(`.docs-nav a[data-md="${file}"]`)
                 || document.querySelector('.docs-nav a');
             activateTab(starter);
-            loadMarkdown(file, anchor);
+            
+            // Start loading markdown after a short delay
+            setTimeout(() => {
+                loadMarkdown(file, anchor);
+                initLibraries();
+            }, 0);
         });
     </script>
 </body>
