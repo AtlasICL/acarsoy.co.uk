@@ -16,6 +16,193 @@
     <meta name="description" content="Emre Acarsoy's musical performances and compositions" />
     <meta name="keywords"
         content="music, piano, performance, classical music, compositions" />
+        
+    <!-- Slideshow CSS -->
+    <style>
+        /* Slideshow wrapper to position the arrows */
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 70%; /* Reduced from 100% to make images smaller */
+            position: relative;
+            margin: auto;
+            /* Add minimum height to ensure arrows have space */
+            min-height: 300px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0; /* Add vertical padding */
+        }
+
+        /* Slide container to hold the image */
+        .slide {
+            display: none;
+            position: relative;
+            margin: auto;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            background-color: transparent;
+        }
+        
+        /* Make sure images fit within the container */
+        .slide img {
+            max-width: 100%;
+            max-height: 60vh; /* Reduced from 70vh to make images smaller */
+            height: auto;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 6px;
+            object-fit: contain;
+            background-color: transparent;
+            border: none !important;
+        }
+        
+        /* Make first slide visible by default */
+        .slide:first-child {
+            display: block;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-30px); /* Adjusted value to center vertically */
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: 0.6s ease;
+            border-radius: 50%; /* Make them circular */
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            text-decoration: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Add subtle shadow */
+        }
+
+        /* Position the "previous button" to the left */
+        .prev {
+            left: -60px; /* Positioned absolutely */
+            margin-left: 0;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: -60px; /* Positioned absolutely */
+            margin-right: 0;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: var(--primary-color);
+        }
+
+        /* The dots/bullets/indicators */
+        .dots-container {
+            margin-top: 10px;
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active-dot, .dot:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Fading animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        
+        /* Responsive styling */
+        @media only screen and (max-width: 768px) {
+            .slideshow-wrapper {
+                max-width: 90%;
+            }
+            
+            .prev, .next {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+            }
+            
+            .prev {
+                margin-left: 0;
+                left: 10px;
+            }
+            
+            .next {
+                margin-right: 0;
+                right: 10px;
+            }
+            
+            .dot {
+                height: 10px;
+                width: 10px;
+            }
+        }
+
+        /* Override project-images background for slideshow */
+        .project-images {
+            background-color: transparent !important;
+        }
+        
+        /* Override any inherited styles for slideshow */
+        .slideshow-wrapper .slide img {
+            width: auto !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        .slideshow-wrapper .slide img:hover {
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        
+        /* Override any link styling for the arrows */
+        .slideshow-wrapper a.prev,
+        .slideshow-wrapper a.next {
+            text-decoration: none !important;
+            border-bottom: none !important;
+            outline: none !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,10 +231,10 @@
             <!-- Chopin Nocturne -->
             <article class="project-item">
                 <div class="project-content">
-                    <h3></h3>
+                    <h3>Tabernacle Show - Les petites Mouettes</h3>
                     <a href="https://www.youtube.com/watch?v=0kUy7KP3cuo" target="_blank">Watch part of our performance on YouTube</a>
                     <p>
-                        Tabernacle Show - Les petites Mouettes
+                        
                     </p>
                     <p>
                         We had the great pleasure of performing to an audience of over 1000 people at the Tabernacle in Notting Hill. 
@@ -55,9 +242,37 @@
                     </p>
                 </div>
                 <div class="project-images">
-                    <img src="img/music/performance_emre_front.JPG" alt="Performance (Emre singing)"
-                        loading="lazy" />
-                    <img src="img/music/performance_adrien.JPG" alt="Performance (Adrien on the violin)"
+                    <div class="slideshow-wrapper">
+                        <!-- Navigation arrows -->
+                        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+                        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+                        
+                        <div class="slideshow-container">
+                            <div class="slide fade">
+                                <img src="img/music/performance_emre_front.JPG" alt="Performance (Emre singing)" loading="lazy" />
+                            </div>
+                            
+                            <div class="slide fade">
+                                <img src="img/music/performance_adrien.JPG" alt="Performance (Adrien on the violin)" loading="lazy" />
+                            </div>
+                            
+                            <div class="slide fade">
+                                <img src="img/music/final_speech_emre.JPG" alt="End of performance, Emre gives a thank you speech" loading="lazy" />
+                            </div>
+                            
+                            <div class="slide fade">
+                                <img src="img/music/performance_emre_back.JPG" alt="Performance (Emre singing, shot from behind)" loading="lazy" />
+                            </div>
+                        </div>
+                        
+                        <!-- Dots/circles for indication -->
+                        <div class="dots-container" style="text-align:center">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                        </div>
+                    </div>
                 </div>
             </article>
 
@@ -132,6 +347,84 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+    
+    <!-- Slideshow JavaScript -->
+    <script>
+        let slideIndex = 1;
+        
+        // Initialize the slideshow by setting the first dot as active
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlides(slideIndex);
+            
+            // Initial positioning
+            positionArrows();
+            
+            // Handle window resize for arrow positioning
+            window.addEventListener('resize', positionArrows);
+        });
+        
+        // Next/previous controls
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+        
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        
+        // Centers the arrows based on the active image
+        function positionArrows() {
+            setTimeout(() => {
+                const activeSlide = document.querySelector('.slide[style*="display: block"]');
+                if (activeSlide) {
+                    const activeImg = activeSlide.querySelector('img');
+                    if (activeImg) {
+                        const imgHeight = activeImg.clientHeight;
+                        const prevBtn = document.querySelector('.prev');
+                        const nextBtn = document.querySelector('.next');
+                        
+                        // Position both buttons based on image height
+                        const topPosition = (imgHeight / 2) - 25;
+                        
+                        if (prevBtn) prevBtn.style.top = `${topPosition}px`;
+                        if (nextBtn) nextBtn.style.top = `${topPosition}px`;
+                        
+                        // Reset transform since we're using absolute positioning
+                        if (prevBtn) prevBtn.style.transform = 'none';
+                        if (nextBtn) nextBtn.style.transform = 'none';
+                    }
+                }
+            }, 100); // Small delay to allow image to load
+        }
+        
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            // Handle wrapping around at the ends
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            // Hide all slides
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            // Remove active state from all dots
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+            
+            // Show the current slide and activate current dot
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active-dot";
+            
+            // Re-position arrows based on newly displayed image
+            positionArrows();
+        }
+    </script>
 </body>
 
 </html> 
