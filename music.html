@@ -95,10 +95,11 @@
             cursor: pointer;
             position: absolute;
             /* More central vertical positioning */
-            top: 175px; /* More centered vertically */
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
+            top: 50%; /* Changed from fixed pixel value to percentage */
+            transform: translateY(-50%); /* Center vertically */
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
             text-align: center;
             color: white;
             font-weight: bold;
@@ -117,12 +118,12 @@
 
         /* Position the "previous button" to the left */
         .prev {
-            left: -0px; /* Closer to the image, matching right arrow distance */
+            left: 10px; /* Positioned relative to slideshow container */
         }
 
         /* Position the "next button" to the right */
         .next {
-            right: -40px; /* Consistent with left arrow */
+            right: 10px; /* Positioned relative to slideshow container */
         }
 
         /* On hover, add a black background color with a little bit see-through */
@@ -166,31 +167,29 @@
         @media only screen and (max-width: 768px) {
             .slideshow-wrapper {
                 max-width: 90%;
+                min-height: 250px; /* Reduced for better mobile layout */
             }
             
             .slideshow-container {
-                max-width: 70%; /* Adjust for mobile */
+                max-width: 85%; /* Increased from 70% to give more room for image */
+                min-height: 220px; /* Adjusted for mobile */
             }
             
             .prev, .next {
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
-                font-size: 18px;
-                top: 150px; /* Adjust for mobile */
-            }
-            
-            .prev {
-                left: -20px; /* Keep consistent with right arrow on mobile */
-            }
-            
-            .next {
-                right: -20px; /* Keep consistent with left arrow on mobile */
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 16px;
             }
             
             .dot {
-                height: 10px;
-                width: 10px;
+                height: 8px;
+                width: 8px;
+            }
+            
+            /* Ensure images don't exceed container on mobile */
+            .slide img {
+                max-height: 50vh;
             }
         }
 
