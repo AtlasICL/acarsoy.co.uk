@@ -1,4 +1,6 @@
-/* Slideshow wrapper to position the arrows */
+/* Slideshow component styles
+ * Main wrapper contains everything including navigation controls and indicators
+ */
 .slideshow-wrapper {
     position: relative;
     width: 100%;
@@ -8,10 +10,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 350px; /* Adjusted for better layout */
+    min-height: 350px; /* Prevents layout shift during loading */
 }
 
-/* Section intro styling */
+/* Section intro for context above slideshows */
 .section-intro {
     max-width: 900px;
     margin: 0 auto 40px;
@@ -25,23 +27,22 @@
     margin-bottom: 20px;
 }
 
-/* Slideshow container */
+/* Inner container for actual slide content */
 .slideshow-container {
-    max-width: 60%; /* Reduced to make space for arrows */
+    max-width: 60%; /* Narrower width creates space for arrow controls */
     position: relative;
     margin: auto;
-    /* Add minimum height to ensure arrows have space */
-    min-height: 280px; /* Adjusted for better layout */
+    min-height: 280px; /* Prevents container collapse before images load */
     background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 0; /* Add vertical padding */
+    padding: 20px 0;
 }
 
-/* Slide container to hold the image */
+/* Individual slide panels */
 .slide {
-    display: none;
+    display: none; /* Hidden by default, JS controls visibility */
     position: relative;
     margin: auto;
     text-align: center;
@@ -50,10 +51,10 @@
     background-color: transparent;
 }
 
-/* Make sure images fit within the container */
+/* Image containment rules to maintain aspect ratio */
 .slide img {
     max-width: 100%;
-    max-height: 60vh; /* Reduced from 70vh to make images smaller */
+    max-height: 60vh; /* Limits vertical height on large screens */
     height: auto;
     width: auto;
     display: block;
@@ -64,17 +65,16 @@
     border: none !important;
 }
 
-/* Make first slide visible by default */
+/* Show first slide by default before JS initialization */
 .slide:first-child {
     display: block;
 }
 
-/* Next & previous buttons */
+/* Navigation arrows */
 .prev, .next {
     cursor: pointer;
     position: absolute;
-    /* More central vertical positioning */
-    top: 50%; /* Changed from fixed pixel value to percentage */
+    top: 50%;
     transform: translateY(-50%); /* Center vertically */
     width: 40px;
     height: 40px;
@@ -84,7 +84,7 @@
     font-weight: bold;
     font-size: 24px;
     transition: 0.6s ease;
-    border-radius: 50%; /* Make them circular */
+    border-radius: 50%;
     user-select: none;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;
@@ -92,30 +92,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Add subtle shadow */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* Position the "previous button" to the left */
+/* Position controls on opposite sides */
 .prev {
-    left: 10px; /* Positioned relative to slideshow container */
+    left: 10px;
 }
 
-/* Position the "next button" to the right */
 .next {
-    right: 10px; /* Positioned relative to slideshow container */
+    right: 10px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
+/* Hover effects for arrow controls */
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
     color: var(--primary-color);
 }
 
-/* The dots/bullets/indicators */
+/* Navigation dots container */
 .dots-container {
     margin-top: 10px;
 }
 
+/* Individual navigation dots */
 .dot {
     cursor: pointer;
     height: 15px;
@@ -127,11 +127,12 @@
     transition: background-color 0.6s ease;
 }
 
+/* Active/hover state for dots */
 .active-dot, .dot:hover {
     background-color: var(--primary-color);
 }
 
-/* Fading animation */
+/* Animation for slide transitions */
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
@@ -142,18 +143,19 @@
     to {opacity: 1}
 }
 
-/* Responsive styling */
+/* Mobile responsiveness */
 @media only screen and (max-width: 768px) {
     .slideshow-wrapper {
         max-width: 90%;
-        min-height: 250px; /* Reduced for better mobile layout */
+        min-height: 250px;
     }
     
     .slideshow-container {
-        max-width: 85%; /* Increased from 70% to give more room for image */
-        min-height: 220px; /* Adjusted for mobile */
+        max-width: 85%; /* Wider container on mobile for better visibility */
+        min-height: 220px;
     }
     
+    /* Smaller controls for mobile screens */
     .prev, .next {
         width: 30px;
         height: 30px;
@@ -161,23 +163,23 @@
         font-size: 16px;
     }
     
+    /* Smaller dots for mobile */
     .dot {
         height: 8px;
         width: 8px;
     }
     
-    /* Ensure images don't exceed container on mobile */
     .slide img {
-        max-height: 50vh;
+        max-height: 50vh; /* Reduced height on mobile */
     }
 }
 
-/* Override project-images background for slideshow */
+/* Override styles from parent components */
 .project-images {
     background-color: transparent !important;
 }
 
-/* Override any inherited styles for slideshow */
+/* Prevent conflicts with parent styling */
 .slideshow-wrapper .slide img {
     width: auto !important;
     border: none !important;
@@ -189,7 +191,7 @@
     box-shadow: none !important;
 }
 
-/* Override any link styling for the arrows */
+/* Remove default link styling from control arrows */
 .slideshow-wrapper a.prev,
 .slideshow-wrapper a.next {
     text-decoration: none !important;

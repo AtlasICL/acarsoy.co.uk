@@ -1,34 +1,51 @@
-// Track slides for each slideshow on the page
+/**
+ * Slideshow component with lazy loading and navigation
+ * Supports multiple slideshows on a single page with independent navigation
+ */
+
+// Track active slide index for each slideshow instance
 const slideshows = document.querySelectorAll('.slideshow-wrapper');
 const slideIndices = Array(slideshows.length).fill(1);
 
-// Initialize all slideshows with lazy loading
+// Initialize slideshows when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize each slideshow
     slideshows.forEach((slideshow, index) => {
         showSlides(1, index);
-        
-        // Set up Intersection Observer for lazy loading
         setupLazyLoading(slideshow);
     });
 });
 
-// Next/previous controls
+/**
+ * Navigate to previous or next slide
+ * @param {number} n - Direction: -1 for previous, 1 for next
+ * @param {number} slideshowIndex - Index of the slideshow to affect
+ */
 function changeSlide(n, slideshowIndex) {
     showSlides(slideIndices[slideshowIndex] += n, slideshowIndex);
 }
 
-// Thumbnail image controls
+/**
+ * Jump to a specific slide
+ * @param {number} n - Target slide number (1-based index)
+ * @param {number} slideshowIndex - Index of the slideshow to affect
+ */
 function currentSlide(n, slideshowIndex) {
     showSlides(slideIndices[slideshowIndex] = n, slideshowIndex);
 }
 
+/**
+ * Update slideshow display to show the specified slide
+ * Handles slide wraparound, updates indicators, and manages lazy loading
+ * 
+ * @param {number} n - Target slide number
+ * @param {number} slideshowIndex - Index of the slideshow to affect
+ */
 function showSlides(n, slideshowIndex) {
     const slideshow = slideshows[slideshowIndex];
     const slides = slideshow.querySelectorAll('.slide');
     const dots = slideshow.querySelectorAll('.dot');
     
-    // Handle wrapping around at the ends
+    // Handle wraparound at beginning and end
     if (n > slides.length) {slideIndices[slideshowIndex] = 1}
     if (n < 1) {slideIndices[slideshowIndex] = slides.length}
     
@@ -37,16 +54,16 @@ function showSlides(n, slideshowIndex) {
         slide.style.display = "none";
     });
     
-    // Remove active state from all dots
+    // Reset all indicator dots
     dots.forEach(dot => {
         dot.className = dot.className.replace(" active-dot", "");
     });
     
-    // Show the current slide and activate current dot
+    // Show the target slide and highlight its indicator
     slides[slideIndices[slideshowIndex]-1].style.display = "block";
     dots[slideIndices[slideshowIndex]-1].className += " active-dot";
     
-    // Lazy load the current slide image if it hasn't been loaded yet
+    // Load the current slide's image if it's using lazy loading
     const currentSlide = slides[slideIndices[slideshowIndex]-1];
     const img = currentSlide.querySelector('img[data-src]');
     if (img) {
@@ -54,7 +71,7 @@ function showSlides(n, slideshowIndex) {
         img.removeAttribute('data-src');
     }
     
-    // Preload the next slide's image to improve user experience
+    // Preload the next slide's image for smoother transitions
     const nextIndex = (slideIndices[slideshowIndex] % slides.length) || slides.length;
     const nextSlide = slides[nextIndex-1];
     const nextImg = nextSlide.querySelector('img[data-src]');
@@ -64,48 +81,56 @@ function showSlides(n, slideshowIndex) {
     }
 }
 
-// Setup lazy loading for a slideshow
+/**
+ * Configure lazy loading for slideshow images
+ * First slide loads immediately, others load when slideshow becomes visible
+ * 
+ * @param {Element} slideshow - Slideshow container element
+ */
 function setupLazyLoading(slideshow) {
-    // Convert all image src attributes to data-src except for the first slide
     const slides = slideshow.querySelectorAll('.slide');
+    
+    // Convert image sources to data attributes except for the first slide
     slides.forEach((slide, index) => {
         const img = slide.querySelector('img');
-        if (img && index > 0) { // Keep the first slide loaded for initial view
+        if (img && index > 0) { // Keep first slide loaded for initial view
             img.dataset.src = img.src;
-            img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='; // Tiny transparent placeholder
+            img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
         }
     });
     
-    // If we have IntersectionObserver support, use it for better performance
+    // Use IntersectionObserver for modern browsers
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // When slideshow is visible, load the current slide
-                    const currentIndex = slideIndices[Array.from(slideshows).indexOf(slideshow)] - 1;
+                    // Load current slide image when slideshow becomes visible
+                    const slideshowIndex = Array.from(slideshows).indexOf(slideshow);
+                    const currentIndex = slideIndices[slideshowIndex] - 1;
                     const currentSlide = slides[currentIndex];
                     const img = currentSlide.querySelector('img[data-src]');
                     if (img) {
                         img.src = img.dataset.src;
                         img.removeAttribute('data-src');
                     }
-                    // Stop observing once visible
+                    
+                    // No need to keep observing once loaded
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            rootMargin: '50px', // Load when within 50px of viewport
-            threshold: 0.1 // Trigger when 10% visible
+            rootMargin: '50px', // Start loading slightly before visible
+            threshold: 0.1      // Trigger when 10% visible
         });
         
-        // Observe the slideshow wrapper
+        // Watch for slideshow entering viewport
         observer.observe(slideshow);
     }
 }
 
-// Add event listeners to navigation elements
+// Set up event listeners for slideshow navigation
 slideshows.forEach((slideshow, index) => {
-    // Add event listeners to navigation buttons
+    // Previous/next button handlers
     slideshow.querySelector('.prev').onclick = function() {
         changeSlide(-1, index);
     };
@@ -114,7 +139,7 @@ slideshows.forEach((slideshow, index) => {
         changeSlide(1, index);
     };
     
-    // Add event listeners to dots
+    // Navigation dot handlers
     const dots = slideshow.querySelectorAll('.dot');
     dots.forEach((dot, dotIndex) => {
         dot.onclick = function() {
