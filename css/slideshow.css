@@ -1,0 +1,198 @@
+/* Slideshow wrapper to position the arrows */
+.slideshow-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 350px; /* Adjusted for better layout */
+}
+
+/* Section intro styling */
+.section-intro {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    text-align: left;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.section-intro p {
+    margin-bottom: 20px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 60%; /* Reduced to make space for arrows */
+    position: relative;
+    margin: auto;
+    /* Add minimum height to ensure arrows have space */
+    min-height: 280px; /* Adjusted for better layout */
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0; /* Add vertical padding */
+}
+
+/* Slide container to hold the image */
+.slide {
+    display: none;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+/* Make sure images fit within the container */
+.slide img {
+    max-width: 100%;
+    max-height: 60vh; /* Reduced from 70vh to make images smaller */
+    height: auto;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    object-fit: contain;
+    background-color: transparent;
+    border: none !important;
+}
+
+/* Make first slide visible by default */
+.slide:first-child {
+    display: block;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    /* More central vertical positioning */
+    top: 50%; /* Changed from fixed pixel value to percentage */
+    transform: translateY(-50%); /* Center vertically */
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    border-radius: 50%; /* Make them circular */
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 10;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Add subtle shadow */
+}
+
+/* Position the "previous button" to the left */
+.prev {
+    left: 10px; /* Positioned relative to slideshow container */
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 10px; /* Positioned relative to slideshow container */
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--primary-color);
+}
+
+/* The dots/bullets/indicators */
+.dots-container {
+    margin-top: 10px;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active-dot, .dot:hover {
+    background-color: var(--primary-color);
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* Responsive styling */
+@media only screen and (max-width: 768px) {
+    .slideshow-wrapper {
+        max-width: 90%;
+        min-height: 250px; /* Reduced for better mobile layout */
+    }
+    
+    .slideshow-container {
+        max-width: 85%; /* Increased from 70% to give more room for image */
+        min-height: 220px; /* Adjusted for mobile */
+    }
+    
+    .prev, .next {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+    }
+    
+    .dot {
+        height: 8px;
+        width: 8px;
+    }
+    
+    /* Ensure images don't exceed container on mobile */
+    .slide img {
+        max-height: 50vh;
+    }
+}
+
+/* Override project-images background for slideshow */
+.project-images {
+    background-color: transparent !important;
+}
+
+/* Override any inherited styles for slideshow */
+.slideshow-wrapper .slide img {
+    width: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.slideshow-wrapper .slide img:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Override any link styling for the arrows */
+.slideshow-wrapper a.prev,
+.slideshow-wrapper a.next {
+    text-decoration: none !important;
+    border-bottom: none !important;
+    outline: none !important;
+} 

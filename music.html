@@ -8,6 +8,8 @@
     <title>Emre's Music</title>
     <!-- Link to the external CSS file -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Link to the slideshow CSS file -->
+    <link rel="stylesheet" href="css/slideshow.css" />
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="48x48" href="img/favicon.ico" />
     <!-- Apple Touch Icon for iOS -->
@@ -16,208 +18,86 @@
     <meta name="description" content="Emre Acarsoy's musical performances and compositions" />
     <meta name="keywords"
         content="music, piano, performance, classical music, compositions" />
-        
-    <!-- Slideshow CSS -->
-    <style>
-        /* Slideshow wrapper to position the arrows */
-        .slideshow-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: transparent;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 350px; /* Adjusted for better layout */
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MusicGroup",
+      "name": "Les petites Mouettes",
+      "description": "A musical group led by Emre Acarsoy performing at various events",
+      "image": "https://acarsoy.co.uk/img/music/performance_emre_front.JPG",
+      "member": [
+        {
+          "@type": "Person",
+          "name": "Emre Acarsoy",
+          "roleName": "Lead vocalist and pianist"
+        },
+        {
+          "@type": "Person",
+          "name": "Adrien",
+          "roleName": "Violinist"
         }
-        
-        /* Section intro styling */
-        .section-intro {
-            max-width: 900px;
-            margin: 0 auto 40px;
-            text-align: left;
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: var(--text-color);
-        }
-        
-        .section-intro p {
-            margin-bottom: 20px;
-        }
-        
-        /* Slideshow container */
-        .slideshow-container {
-            max-width: 60%; /* Reduced to make space for arrows */
-            position: relative;
-            margin: auto;
-            /* Add minimum height to ensure arrows have space */
-            min-height: 280px; /* Adjusted for better layout */
-            background-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 0; /* Add vertical padding */
-        }
-
-        /* Slide container to hold the image */
-        .slide {
-            display: none;
-            position: relative;
-            margin: auto;
-            text-align: center;
-            height: 100%;
-            width: 100%;
-            background-color: transparent;
-        }
-        
-        /* Make sure images fit within the container */
-        .slide img {
-            max-width: 100%;
-            max-height: 60vh; /* Reduced from 70vh to make images smaller */
-            height: auto;
-            width: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 6px;
-            object-fit: contain;
-            background-color: transparent;
-            border: none !important;
-        }
-        
-        /* Make first slide visible by default */
-        .slide:first-child {
-            display: block;
-        }
-
-        /* Next & previous buttons */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            /* More central vertical positioning */
-            top: 50%; /* Changed from fixed pixel value to percentage */
-            transform: translateY(-50%); /* Center vertically */
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: 0.6s ease;
-            border-radius: 50%; /* Make them circular */
-            user-select: none;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 10;
-            text-decoration: none !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Add subtle shadow */
-        }
-
-        /* Position the "previous button" to the left */
-        .prev {
-            left: 10px; /* Positioned relative to slideshow container */
-        }
-
-        /* Position the "next button" to the right */
-        .next {
-            right: 10px; /* Positioned relative to slideshow container */
-        }
-
-        /* On hover, add a black background color with a little bit see-through */
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: var(--primary-color);
-        }
-
-        /* The dots/bullets/indicators */
-        .dots-container {
-            margin-top: 10px;
-        }
-        
-        .dot {
-            cursor: pointer;
-            height: 15px;
-            width: 15px;
-            margin: 0 2px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.6s ease;
-        }
-
-        .active-dot, .dot:hover {
-            background-color: var(--primary-color);
-        }
-
-        /* Fading animation */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-        
-        /* Responsive styling */
-        @media only screen and (max-width: 768px) {
-            .slideshow-wrapper {
-                max-width: 90%;
-                min-height: 250px; /* Reduced for better mobile layout */
+      ],
+      "event": [
+        {
+          "@type": "MusicEvent",
+          "name": "Tabernacle Show",
+          "location": {
+            "@type": "Place",
+            "name": "The Tabernacle",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Notting Hill",
+              "addressRegion": "London",
+              "addressCountry": "UK"
             }
-            
-            .slideshow-container {
-                max-width: 85%; /* Increased from 70% to give more room for image */
-                min-height: 220px; /* Adjusted for mobile */
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.youtube.com/watch?v=0kUy7KP3cuo",
+            "description": "Watch part of our performance on YouTube"
+          }
+        },
+        {
+          "@type": "MusicEvent",
+          "name": "LFCG Talent Show 2022",
+          "location": {
+            "@type": "Place",
+            "name": "Lycée Francais Charles de Gaulle",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "London",
+              "addressCountry": "UK"
             }
-            
-            .prev, .next {
-                width: 30px;
-                height: 30px;
-                line-height: 30px;
-                font-size: 16px;
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://youtu.be/OHOeyzsR1tk?si=jXGMgadCvGwkuMNP&t=300",
+            "description": "Watch on YouTube"
+          }
+        },
+        {
+          "@type": "MusicEvent",
+          "name": "Outdoor live performance",
+          "location": {
+            "@type": "Place",
+            "name": "Lycée Francais Charles de Gaulle",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "London",
+              "addressCountry": "UK"
             }
-            
-            .dot {
-                height: 8px;
-                width: 8px;
-            }
-            
-            /* Ensure images don't exceed container on mobile */
-            .slide img {
-                max-height: 50vh;
-            }
+          },
+          "offers": {
+            "@type": "Offer",
+            "url": "https://www.youtube.com/watch?v=ucAZTmLSkKo",
+            "description": "Watch on YouTube"
+          }
         }
-
-        /* Override project-images background for slideshow */
-        .project-images {
-            background-color: transparent !important;
-        }
-        
-        /* Override any inherited styles for slideshow */
-        .slideshow-wrapper .slide img {
-            width: auto !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-        
-        .slideshow-wrapper .slide img:hover {
-            transform: none !important;
-            box-shadow: none !important;
-        }
-        
-        /* Override any link styling for the arrows */
-        .slideshow-wrapper a.prev,
-        .slideshow-wrapper a.next {
-            text-decoration: none !important;
-            border-bottom: none !important;
-            outline: none !important;
-        }
-    </style>
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -256,9 +136,6 @@
                 <div class="project-content">
                     <h3>Tabernacle Show - Les petites Mouettes</h3>
                     <a href="https://www.youtube.com/watch?v=0kUy7KP3cuo" target="_blank">Watch part of our performance on YouTube</a>
-                    <p>
-                        
-                    </p>
                     <p>
                         We had the great pleasure of performing to an audience of over 1000 people at the Tabernacle in Notting Hill. 
                         Built in 1887 as a church, it is today a Grade II listed building. It was a great experience to perform in such a beautiful and historic venue.
@@ -350,6 +227,7 @@
                     <h3>Hosting the LFCG Talent Show - 2023 edition</h3>
                     <p>
                         I was invited back to host the 2023 edition of the LFCG Talent Show. 
+                        The event was even more successful than the previous year, with a wide variety of talented performers and a packed audience.
                     </p>
                     
                 </div>
@@ -389,6 +267,7 @@
                     <a href="https://www.youtube.com/watch?v=ucAZTmLSkKo" target="_blank">Watch on YouTube</a>
                     <p>
                         This was a very fun and light-hearted performance at the Lycée Francais Charles de Gaulle by my band Les petites Mouettes.
+                        We performed several original songs and covers to an enthusiastic audience of students and teachers.
                     </p>
                     
                 </div>
@@ -427,7 +306,7 @@
                 <a href="https://github.com/AtlasICL" target="_blank" class="social-btn" aria-label="GitHub Profile (opens in new tab)">GitHub</a>
                 <a href="https://www.linkedin.com/in/emre-acarsoy" target="_blank" class="social-btn" aria-label="LinkedIn Profile (opens in new tab)">LinkedIn</a>
             </div>
-            <p>© 2025 Emre Acarsoy. All rights reserved.</p>
+            <p>© 2024 Emre Acarsoy. All rights reserved.</p>
         </div>
     </footer>
 
@@ -435,132 +314,7 @@
     <script src="js/script.js"></script>
     
     <!-- Slideshow JavaScript -->
-    <script>
-        // Track slides for each slideshow on the page
-        const slideshows = document.querySelectorAll('.slideshow-wrapper');
-        const slideIndices = Array(slideshows.length).fill(1);
-        
-        // Initialize all slideshows with lazy loading
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize each slideshow
-            slideshows.forEach((slideshow, index) => {
-                showSlides(1, index);
-                
-                // Set up Intersection Observer for lazy loading
-                setupLazyLoading(slideshow);
-            });
-        });
-        
-        // Next/previous controls
-        function changeSlide(n, slideshowIndex) {
-            showSlides(slideIndices[slideshowIndex] += n, slideshowIndex);
-        }
-        
-        // Thumbnail image controls
-        function currentSlide(n, slideshowIndex) {
-            showSlides(slideIndices[slideshowIndex] = n, slideshowIndex);
-        }
-        
-        function showSlides(n, slideshowIndex) {
-            const slideshow = slideshows[slideshowIndex];
-            const slides = slideshow.querySelectorAll('.slide');
-            const dots = slideshow.querySelectorAll('.dot');
-            
-            // Handle wrapping around at the ends
-            if (n > slides.length) {slideIndices[slideshowIndex] = 1}
-            if (n < 1) {slideIndices[slideshowIndex] = slides.length}
-            
-            // Hide all slides
-            slides.forEach(slide => {
-                slide.style.display = "none";
-            });
-            
-            // Remove active state from all dots
-            dots.forEach(dot => {
-                dot.className = dot.className.replace(" active-dot", "");
-            });
-            
-            // Show the current slide and activate current dot
-            slides[slideIndices[slideshowIndex]-1].style.display = "block";
-            dots[slideIndices[slideshowIndex]-1].className += " active-dot";
-            
-            // Lazy load the current slide image if it hasn't been loaded yet
-            const currentSlide = slides[slideIndices[slideshowIndex]-1];
-            const img = currentSlide.querySelector('img[data-src]');
-            if (img) {
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-            }
-            
-            // Preload the next slide's image to improve user experience
-            const nextIndex = (slideIndices[slideshowIndex] % slides.length) || slides.length;
-            const nextSlide = slides[nextIndex-1];
-            const nextImg = nextSlide.querySelector('img[data-src]');
-            if (nextImg) {
-                const preloadImg = new Image();
-                preloadImg.src = nextImg.dataset.src;
-            }
-        }
-        
-        // Setup lazy loading for a slideshow
-        function setupLazyLoading(slideshow) {
-            // Convert all image src attributes to data-src except for the first slide
-            const slides = slideshow.querySelectorAll('.slide');
-            slides.forEach((slide, index) => {
-                const img = slide.querySelector('img');
-                if (img && index > 0) { // Keep the first slide loaded for initial view
-                    img.dataset.src = img.src;
-                    img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='; // Tiny transparent placeholder
-                }
-            });
-            
-            // If we have IntersectionObserver support, use it for better performance
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // When slideshow is visible, load the current slide
-                            const currentIndex = slideIndices[Array.from(slideshows).indexOf(slideshow)] - 1;
-                            const currentSlide = slides[currentIndex];
-                            const img = currentSlide.querySelector('img[data-src]');
-                            if (img) {
-                                img.src = img.dataset.src;
-                                img.removeAttribute('data-src');
-                            }
-                            // Stop observing once visible
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    rootMargin: '50px', // Load when within 50px of viewport
-                    threshold: 0.1 // Trigger when 10% visible
-                });
-                
-                // Observe the slideshow wrapper
-                observer.observe(slideshow);
-            }
-        }
-        
-        // Add event listeners to navigation elements
-        slideshows.forEach((slideshow, index) => {
-            // Add event listeners to navigation buttons
-            slideshow.querySelector('.prev').onclick = function() {
-                changeSlide(-1, index);
-            };
-            
-            slideshow.querySelector('.next').onclick = function() {
-                changeSlide(1, index);
-            };
-            
-            // Add event listeners to dots
-            const dots = slideshow.querySelectorAll('.dot');
-            dots.forEach((dot, dotIndex) => {
-                dot.onclick = function() {
-                    currentSlide(dotIndex + 1, index);
-                };
-            });
-        });
-    </script>
+    <script src="js/slideshow.js"></script>
 </body>
 
 </html> 
