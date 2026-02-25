@@ -29,7 +29,7 @@
 
 /* Inner container for actual slide content */
 .slideshow-container {
-    max-width: 60%; /* Narrower width creates space for arrow controls */
+    width: 60%; /* Fixed width so frame doesn't shrink with portrait images */
     position: relative;
     margin: auto;
     min-height: 280px; /* Prevents container collapse before images load */
@@ -163,7 +163,7 @@
     }
 
     .slideshow-container {
-        max-width: 85%; /* Wider container on mobile for better visibility */
+        width: 85%; /* Wider container on mobile for better visibility */
         min-height: 220px;
     }
 
