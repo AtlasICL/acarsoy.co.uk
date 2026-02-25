@@ -4,10 +4,23 @@
   =================================
 */
 
-/* 
+/*
   Base Styles & Reset
   ------------------
 */
+
+/* Custom Properties */
+:root {
+    --primary-color: #ff7f00;
+    --dark-color: #121212;
+    --card-color: #1b1b1b;
+    --border-color: #444;
+    --text-color-light: #f0f0f0;
+    --text-color-muted: #ccc;
+    --hover-color: #e16f00;
+    --dot-color: #bbb;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,25 +29,9 @@
 
 body {
     font-family: Arial, sans-serif;
-    color: #f0f0f0;
-    background-color: #121212;
-    /* Dark background */
+    color: var(--text-color-light);
+    background-color: var(--dark-color);
     line-height: 1.6;
-}
-
-/* Define Custom Colors */
-:root {
-    --primary-color: #ff7f00;
-    /* Orange accent */
-    --dark-color: #121212;
-    /* Dark background */
-    --card-color: #1b1b1b;
-    /* Slightly lighter background for cards */
-    --border-color: #444;
-    /* Border color */
-    --text-color-light: #f0f0f0;
-    --hover-color: #e16f00;
-    /* Darker orange for hover states */
 }
 
 /* 
@@ -229,7 +226,7 @@ main {
     text-align: center;
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    color: #ccc;
+    color: var(--text-color-muted);
     font-style: italic;
     max-width: 90%;
     /* Prevent extremely long captions from overflowing */
@@ -242,7 +239,7 @@ main {
     }
 }
 
-.project-item a {
+.project-content a {
     color: #fff;
     text-decoration: underline;
     position: absolute;
@@ -252,7 +249,7 @@ main {
     white-space: nowrap;
 }
 
-.project-item a:hover {
+.project-content a:hover {
     color: var(--primary-color);
 }
 
@@ -306,10 +303,6 @@ footer {
     margin: 0 auto;
 }
 
-.email-protect {
-    font-style: italic;
-}
-
 /* Social Media Links in Footer */
 .social-links {
     display: flex;
@@ -334,23 +327,7 @@ footer {
     color: white;
 }
 
-/* Button Styles */
-.contact-btn {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: #ffffff;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-    margin-top: 1rem;
-}
-
-.contact-btn:hover {
-    background-color: var(--hover-color);
-}
-
-/* 
+/*
   Responsive Layout
   ---------------
 */
@@ -374,7 +351,7 @@ footer {
         /* Remove padding on small screens */
     }
 
-    .project-item a {
+    .project-content a {
         position: static;
         margin-top: 0.5rem;
         margin-bottom: 1rem;

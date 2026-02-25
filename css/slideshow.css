@@ -20,7 +20,7 @@
     text-align: left;
     font-size: 1.1em;
     line-height: 1.6;
-    color: var(--text-color);
+    color: var(--text-color-light);
 }
 
 .section-intro p {
@@ -52,7 +52,7 @@
 }
 
 /* Image containment rules to maintain aspect ratio */
-.slide img {
+.slideshow-wrapper .slide img {
     max-width: 100%;
     max-height: 60vh; /* Limits vertical height on large screens */
     height: auto;
@@ -62,7 +62,13 @@
     border-radius: 6px;
     object-fit: contain;
     background-color: transparent;
-    border: none !important;
+    border: none;
+    box-shadow: none;
+}
+
+.slideshow-wrapper .slide img:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 /* Show first slide by default before JS initialization */
@@ -70,7 +76,7 @@
     display: block;
 }
 
-/* Navigation arrows */
+/* Navigation arrow buttons */
 .prev, .next {
     cursor: pointer;
     position: absolute;
@@ -88,11 +94,15 @@
     user-select: none;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;
-    text-decoration: none !important;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    /* Reset button defaults */
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    text-decoration: none;
 }
 
 /* Position controls on opposite sides */
@@ -113,6 +123,7 @@
 /* Navigation dots container */
 .dots-container {
     margin-top: 10px;
+    text-align: center;
 }
 
 /* Individual navigation dots */
@@ -121,7 +132,7 @@
     height: 15px;
     width: 15px;
     margin: 0 2px;
-    background-color: #bbb;
+    background-color: var(--dot-color);
     border-radius: 50%;
     display: inline-block;
     transition: background-color 0.6s ease;
@@ -139,7 +150,7 @@
 }
 
 @keyframes fade {
-    from {opacity: .4} 
+    from {opacity: .4}
     to {opacity: 1}
 }
 
@@ -149,12 +160,12 @@
         max-width: 90%;
         min-height: 250px;
     }
-    
+
     .slideshow-container {
         max-width: 85%; /* Wider container on mobile for better visibility */
         min-height: 220px;
     }
-    
+
     /* Smaller controls for mobile screens */
     .prev, .next {
         width: 30px;
@@ -162,39 +173,14 @@
         line-height: 30px;
         font-size: 16px;
     }
-    
+
     /* Smaller dots for mobile */
     .dot {
         height: 8px;
         width: 8px;
     }
-    
-    .slide img {
+
+    .slideshow-wrapper .slide img {
         max-height: 50vh; /* Reduced height on mobile */
     }
 }
-
-/* Override styles from parent components */
-.project-images {
-    background-color: transparent !important;
-}
-
-/* Prevent conflicts with parent styling */
-.slideshow-wrapper .slide img {
-    width: auto !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-.slideshow-wrapper .slide img:hover {
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* Remove default link styling from control arrows */
-.slideshow-wrapper a.prev,
-.slideshow-wrapper a.next {
-    text-decoration: none !important;
-    border-bottom: none !important;
-    outline: none !important;
-} 
