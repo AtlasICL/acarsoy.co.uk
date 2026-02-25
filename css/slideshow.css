@@ -54,8 +54,7 @@
 /* Image containment rules to maintain aspect ratio */
 .slideshow-wrapper .slide img {
     max-width: 100%;
-    max-height: 60vh; /* Limits vertical height on large screens */
-    height: auto;
+    height: 60vh; /* Fixed height so all slides match */
     width: auto;
     display: block;
     margin: 0 auto;
@@ -181,6 +180,6 @@
     }
 
     .slideshow-wrapper .slide img {
-        max-height: 50vh; /* Reduced height on mobile */
+        height: 50vh; /* Fixed height on mobile */
     }
 }
