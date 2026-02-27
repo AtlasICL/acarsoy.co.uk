@@ -39,7 +39,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 4px;
 }
 
 /* Individual slide panels */
@@ -56,8 +56,7 @@
 /* Image containment rules to maintain aspect ratio */
 .slideshow-wrapper .slide img {
     max-width: 100%;
-    max-height: 60vh;
-    height: auto;
+    height: 60vh;
     width: auto;
     display: block;
     margin: 0 auto;
@@ -186,6 +185,6 @@
     }
 
     .slideshow-wrapper .slide img {
-        max-height: 50vh; /* Max height on mobile */
+        height: 50vh; /* Fixed height on mobile */
     }
 }
