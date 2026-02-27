@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 350px; /* Prevents layout shift during loading */
+    min-height: 200px; /* Prevents layout shift during loading */
 }
 
 /* Section intro for context above slideshows */
@@ -32,7 +32,7 @@
     width: 60%; /* Fixed width so frame doesn't shrink with portrait images */
     position: relative;
     margin: auto;
-    min-height: 280px; /* Prevents container collapse before images load */
+    min-height: 0; /* Let content determine height */
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -56,7 +56,8 @@
 /* Image containment rules to maintain aspect ratio */
 .slideshow-wrapper .slide img {
     max-width: 100%;
-    height: 60vh; /* Fixed height so all slides match */
+    max-height: 60vh;
+    height: auto;
     width: auto;
     display: block;
     margin: 0 auto;
@@ -167,7 +168,7 @@
 
     .slideshow-container {
         width: 85%; /* Wider container on mobile for better visibility */
-        min-height: 220px;
+        min-height: 0;
     }
 
     /* Smaller controls for mobile screens */
@@ -185,6 +186,6 @@
     }
 
     .slideshow-wrapper .slide img {
-        height: 50vh; /* Fixed height on mobile */
+        max-height: 50vh; /* Max height on mobile */
     }
 }
