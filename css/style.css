@@ -39,6 +39,16 @@
     /* allow horizontal scroll if needed */
 }
 
+/* Tighten gap between "Features" label and its bullet list */
+.project-content p + ul {
+    margin-top: -0.5rem;
+}
+
+/* Add breathing room between bullet list and next heading */
+.project-content ul + h4 {
+    margin-top: 1.5rem;
+}
+
 .project-content pre code {
     display: block;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
