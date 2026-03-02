@@ -38,11 +38,67 @@
         <section id="projects" class="info-section" aria-labelledby="projects-heading">
             <h2 id="projects-heading">Projects</h2>
 
+            <!-- whatdidi -->
+            <article class="project-item">
+                <div class="project-content">
+                    <h3>whatdidi - command line history search tool</h3>
+                    <a href="https://github.com/AtlasICL/whatdidi" target="_blank" rel="noopener">
+                        View project on GitHub
+                    </a>
+
+                    <p>
+                        A command-line utility that helps you find commands you've previously run.
+                        Searches your shell history (both persistent and current session) and retrieves matching
+                        commands based on a search term.
+                    </p>
+
+                    <p><strong>Features</strong></p>
+                    <ul>
+                        <li>Supports searches for <em>n</em> commands</li>
+                        <li>
+                            Supports searching for compound commands (e.g. searching <code>git push</code> - not just
+                            <code>git</code>)
+                        </li>
+                        <li>
+                            Supports automatic sudo-aware matching (e.g. searching for <code>rm</code> will yield
+                            results with
+                            <code>sudo rm</code> also)
+                        </li>
+                        <li>Simple one-liner installation with <code>curl</code>, or a custom installation shell script
+                        </li>
+                    </ul>
+
+                    <h4>Usage</h4>
+
+                    <p><strong>Search for the last command you ran:</strong></p>
+                    <pre><code>whatdidi curl
+&gt; curl -s https://sh.rustup.rs | bat</code></pre>
+
+                    <p><strong>Search for the last <em>n</em> commands you ran:</strong></p>
+                    <pre><code>whatdidi mvn 3
+&gt; mvn clean compile
+&gt; mvn test
+&gt; mvn clean compile exec:java "-Dexec.mainClass=simulator.ui.UserCLI"</code></pre>
+
+                    <p><strong>Supports compound commands (e.g. search for <code>git push</code> specifically):</strong>
+                    </p>
+                    <pre><code>whatdidi "git push" 2
+&gt; git push
+&gt; git push -u origin main:refactoring</code></pre>
+
+                    <p><strong>Supports commands prefixed with <code>sudo</code>:</strong></p>
+                    <pre><code>whatdidi rm 2
+&gt; rm foo.txt
+&gt; sudo rm bar.txt</code></pre>
+                </div>
+            </article>
+
             <!-- CardGame -->
             <article class="project-item">
                 <div class="project-content">
                     <h3>Multi-threaded game simulation in Java</h3>
-                    <a href="https://github.com/AtlasICL/cardgame" target="_blank" rel="noopener">View project on GitHub</a>
+                    <a href="https://github.com/AtlasICL/cardgame" target="_blank" rel="noopener">View project on
+                        GitHub</a>
                     <p>
                         Multi-threaded card game simulation in Java, with custom cyclic barrier implementation for
                         thread synchronisation.
@@ -58,7 +114,8 @@
             <article class="project-item">
                 <div class="project-content">
                     <h3>Fundamentals of Machine Learning</h3>
-                    <a href="https://github.com/AtlasICL/ML_Fundamentals" target="_blank" rel="noopener">View project on GitHub</a>
+                    <a href="https://github.com/AtlasICL/ML_Fundamentals" target="_blank" rel="noopener">View project on
+                        GitHub</a>
                     <p>
                         Built a Python-based logistic regression classifier using scikit-learn to classify handwritten
                         digits.
@@ -91,7 +148,8 @@
             <article class="project-item">
                 <div class="project-content">
                     <h3>Web Player vs AI Battleships game</h3>
-                    <a href="https://github.com/AtlasICL/battleships_web" target="_blank" rel="noopener">View project on GitHub</a>
+                    <a href="https://github.com/AtlasICL/battleships_web" target="_blank" rel="noopener">View project on
+                        GitHub</a>
                     <p>
                         Web-based battleships game. Users place their ships interactively, and battle an AI.<br> During
                         gameplay, side-by-side boards track both the user's square and the enemy's.
@@ -112,7 +170,8 @@
             <article class="project-item">
                 <div class="project-content">
                     <h3>Custom lift simulator</h3>
-                    <a href="https://github.com/AtlasICL/lift_simulator" target="_blank" rel="noopener">View project on GitHub</a>
+                    <a href="https://github.com/AtlasICL/lift_simulator" target="_blank" rel="noopener">View project on
+                        GitHub</a>
                     <p>
                         Built a custom lift simulator in Python. Features a GUI and customisable parameters such as lift
                         capacity, number of floors.
@@ -135,7 +194,8 @@
             <article class="project-item">
                 <div class="project-content">
                     <h3>Electrical Engineering Group Design Project</h3>
-                    <a href="https://github.com/AtlasICL/EE-Design-Project-Report" target="_blank" rel="noopener">View report on
+                    <a href="https://github.com/AtlasICL/EE-Design-Project-Report" target="_blank" rel="noopener">View
+                        report on
                         GitHub</a>
                     <p>
                         Built a remote-controlled rover capable of detecting infrared signals, measuring frequency,
