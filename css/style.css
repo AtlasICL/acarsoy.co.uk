@@ -27,6 +27,37 @@
     box-sizing: border-box;
 }
 
+/* Usage / code blocks (terminal-style) */
+.project-content pre {
+    background: #101010;
+    /* slightly darker than card */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.9rem 1rem;
+    margin: 0.6rem 0 1.2rem;
+    overflow-x: auto;
+    /* allow horizontal scroll if needed */
+}
+
+.project-content pre code {
+    display: block;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.95rem;
+    color: var(--text-color-light);
+    line-height: 1.5;
+    white-space: pre;
+    /* preserve formatting */
+}
+
+/* Inline code styling (keeps your existing look consistent) */
+.project-content p code,
+.project-content li code {
+    background: rgba(255, 127, 0, 0.12);
+    border: 1px solid rgba(255, 127, 0, 0.25);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+}
+
 body {
     font-family: Arial, sans-serif;
     color: var(--text-color-light);
@@ -340,6 +371,7 @@ footer {
 }
 
 @media (max-width: 768px) {
+
     /* Project items styling for mobile */
     .project-content {
         padding-right: 0;
@@ -382,28 +414,35 @@ footer {
     }
 
     nav h1 {
-        font-size: 1.8rem; /* Slightly smaller on mobile */
-        margin: 0 0 0.5rem 0; /* Increased from 0.4rem to 0.5rem */
+        font-size: 1.8rem;
+        /* Slightly smaller on mobile */
+        margin: 0 0 0.5rem 0;
+        /* Increased from 0.4rem to 0.5rem */
     }
 
     .nav-right {
         display: flex;
-        justify-content: space-between; /* Spread the navigation links */
+        justify-content: space-between;
+        /* Spread the navigation links */
         align-items: center;
         width: 100%;
-        margin: 0; /* Remove top margin */
+        margin: 0;
+        /* Remove top margin */
     }
 
     .nav-right a {
         margin: 0;
-        padding: 0.3rem 0; /* Increased from 0.2rem to 0.3rem */
-        font-size: 1.1rem; /* Slightly smaller on mobile */
+        padding: 0.3rem 0;
+        /* Increased from 0.2rem to 0.3rem */
+        font-size: 1.1rem;
+        /* Slightly smaller on mobile */
         height: 100%;
     }
-    
+
     /* Ensure the underline for active pages stays close to the link text */
     .nav-right a[aria-current="page"]::after {
-        bottom: -2px; /* Closer to the text */
+        bottom: -2px;
+        /* Closer to the text */
     }
 
     /* Main content for mobile */
@@ -417,7 +456,8 @@ footer {
 
     /* Social links for mobile */
     .social-links {
-        flex-direction: row; /* Keep side by side */
+        flex-direction: row;
+        /* Keep side by side */
         margin: 0.75rem 0;
     }
 
