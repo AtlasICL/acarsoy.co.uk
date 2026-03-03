@@ -24,7 +24,7 @@
     /* slightly darker than card */
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    padding: 0.9rem 0.7rem;
+    padding: 0.75rem 0.7rem;
     margin: 0.6rem 0 1.2rem;
     overflow-x: auto;
     /* allow horizontal scroll if needed */
