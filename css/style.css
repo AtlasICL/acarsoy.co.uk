@@ -32,7 +32,7 @@
 
 /* Tighten gap between paragraph and following code block */
 .project-content p + pre {
-    margin-top: -0.4rem;
+    margin-top: -0.7rem;
 }
 
 /* Tighten gap between "Features" label and its bullet list */

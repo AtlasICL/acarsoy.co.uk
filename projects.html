@@ -54,23 +54,22 @@
 
                     <h4>Features / Example Usage</h4>
 
-                    <p><strong>Search for the last command you ran:</strong></p>
+                    <p>Search for the last command you ran:</p>
                     <pre><code>whatdidi curl
 &gt; curl -s https://sh.rustup.rs | bat</code></pre>
 
-                    <p><strong>Search for the last <em>n</em> commands you ran:</strong></p>
+                    <p>Search for the last <em>n</em> commands you ran:</p>
                     <pre><code>whatdidi mvn 3
 &gt; mvn clean compile
 &gt; mvn test
 &gt; mvn clean compile exec:java "-Dexec.mainClass=simulator.ui.UserCLI"</code></pre>
 
-                    <p><strong>Supports compound commands (e.g. search for <code>git push</code> specifically):</strong>
-                    </p>
+                    <p>Supports compound commands (e.g. search for <code>git push</code> specifically):</p>
                     <pre><code>whatdidi "git push" 2
 &gt; git push
 &gt; git push -u origin main:refactoring</code></pre>
 
-                    <p><strong>Supports commands prefixed with <code>sudo</code>:</strong></p>
+                    <p>Supports commands prefixed with <code>sudo</code>:</p>
                     <pre><code>whatdidi rm 2
 &gt; rm foo.txt
 &gt; sudo rm bar.txt</code></pre>
