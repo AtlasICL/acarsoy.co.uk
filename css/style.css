@@ -1,13 +1,4 @@
-/* 
-  =================================
-  CSS for Emre Acarsoy's Portfolio
-  =================================
-*/
-
-/*
-  Base Styles & Reset
-  ------------------
-*/
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* Custom Properties */
 :root {
@@ -33,7 +24,7 @@
     /* slightly darker than card */
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    padding: 0.9rem 1rem;
+    padding: 0.5rem 0.9rem;
     margin: 0.6rem 0 1.2rem;
     overflow-x: auto;
     /* allow horizontal scroll if needed */
@@ -51,7 +42,7 @@
 
 .project-content pre code {
     display: block;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     font-size: 0.95rem;
     color: var(--text-color-light);
     line-height: 1.5;
