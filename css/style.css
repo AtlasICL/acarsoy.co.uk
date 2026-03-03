@@ -55,13 +55,10 @@
     /* preserve formatting */
 }
 
-/* Inline code styling (keeps your existing look consistent) */
+/* Inline code styling */
 .project-content p code,
 .project-content li code {
-    background: rgba(255, 127, 0, 0.12);
-    border: 1px solid rgba(255, 127, 0, 0.25);
-    padding: 0.1rem 0.35rem;
-    border-radius: 4px;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 }
 
 body {
