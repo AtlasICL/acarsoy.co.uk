@@ -24,7 +24,7 @@
     /* slightly darker than card */
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    padding: 0.9rem 1.0rem;
+    padding: 0.9rem 0.7rem;
     margin: 0.6rem 0 1.2rem;
     overflow-x: auto;
     /* allow horizontal scroll if needed */
@@ -32,7 +32,7 @@
 
 /* Tighten gap between paragraph and following code block */
 .project-content p + pre {
-    margin-top: -0.7rem;
+    margin-top: -0.6rem;
 }
 
 /* Tighten gap between "Features" label and its bullet list */
