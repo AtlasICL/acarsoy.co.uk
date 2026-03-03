@@ -48,7 +48,7 @@
 .project-content pre code {
     display: block;
     font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: var(--text-color-light);
     line-height: 1.5;
     white-space: pre;
