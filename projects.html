@@ -51,12 +51,21 @@
                         Searches your shell history (both persistent and current session) and retrieves matching
                         commands based on a search term.
                     </p>
+                    <ul>
+                        <li>Compatible with bash and zsh, MacOS and Linux.</li>
+                        <li>Update and uninstall functionality.</li>
+                        <li>Comprehensive &amp; automated testing suite.</li>
+                        <li>Persistent user settings for default count and unique results.</li>
+                    </ul>
+
+                    <h4>Install</h4>
+                    <pre><code>curl -fsSL https://raw.githubusercontent.com/AtlasICL/whatdidi/main/install.sh | sh</code></pre>
 
                     <h4>Features / Example Usage</h4>
 
                     <p>Search for the last command you ran:</p>
                     <pre><code>whatdidi curl
-&gt; curl -s https://sh.rustup.rs | bat</code></pre>
+&gt; curl -s https://sh.rustup.rs | sh</code></pre>
 
                     <p>Search for the last <em>n</em> commands you ran:</p>
                     <pre><code>whatdidi mvn 3
@@ -74,8 +83,21 @@
 &gt; rm foo.txt
 &gt; sudo rm bar.txt</code></pre>
 
-                    <p>Set default result count (stored in <code>~/.config/whatdidi/config</code> ):</p>
-                    <pre><code>whatdidi --set-default 3</code></pre>
+                    <p>Return only unique results with <code>-u</code> / <code>--unique</code> (the flag can go anywhere):</p>
+                    <pre><code>whatdidi -u git
+&gt; git push origin main
+&gt; git commit -m "feat: performance testing framework"
+&gt; git status</code></pre>
+
+                    <p>Set the default result count (stored in <code>~/.config/whatdidi/config</code>):</p>
+                    <pre><code>whatdidi --set-default-count 3</code></pre>
+
+                    <p>Make unique results the default (pass <code>--no-unique</code> to override per search):</p>
+                    <pre><code>whatdidi --set-default-unique true</code></pre>
+
+                    <p>Update to the latest version, or uninstall:</p>
+                    <pre><code>whatdidi --update
+whatdidi --uninstall</code></pre>
                 </div>
             </article>
 
