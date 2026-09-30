@@ -111,6 +111,13 @@
                     <p>A remote-controlled rover that detects infrared, radio and magnetic signals, from circuit design to Arduino code.</p>
                     <span class="project-card-more">View details <span aria-hidden="true">&rarr;</span></span>
                 </a>
+
+                <a href="#os-specific" class="project-card" data-project="os-specific" aria-haspopup="dialog">
+                    <span class="project-card-tags">LaTeX · Operating Systems</span>
+                    <h3>Why is Software OS-Specific?</h3>
+                    <p>A technical presentation on why applications get tied to one operating system, evaluating translation layers, containers and Electron as cross-platform solutions.</p>
+                    <span class="project-card-more">View details <span aria-hidden="true">&rarr;</span></span>
+                </a>
             </div>
 
             <!-- Project detail modals (opened by clicking a card) -->
@@ -419,6 +426,45 @@ bash ~/dotfiles/setup.sh</code></pre>
                                 <img src="img/projects/eee_report_toc_page1.jpg" alt="Project report T.O.C. page 1"
                                     loading="lazy" />
                                 <img src="img/projects/eee_report_toc_page2.jpg" alt="Project report T.O.C. page 2"
+                                    loading="lazy" />
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </dialog>
+
+            <!-- OS-specific software presentation -->
+            <dialog class="project-modal" id="project-os-specific" aria-labelledby="os-specific-title">
+                <button type="button" class="modal-close" aria-label="Close project details">&times;</button>
+                <div class="modal-body">
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 id="os-specific-title">Why is Software OS-Specific?</h3>
+                            <a href="https://github.com/AtlasICL/os-specific-software" target="_blank" rel="noopener">View project on GitHub</a>
+                            <p>
+                                A technical presentation, built in LaTeX Beamer and given at the University of Exeter, on why
+                                applications like Adobe Photoshop are tied to one operating system, and what developers can do
+                                about it.
+                            </p>
+                            <ul>
+                                <li>Traces OS lock-in to its technical causes: different system call interfaces, and graphics APIs that only run on some platforms (DirectX, Metal, Vulkan, OpenGL).</li>
+                                <li>Sets out an evaluation framework from both the user's point of view (stability, performance, features, updates) and the developer's (development time, expertise needed, maintenance).</li>
+                                <li>Applies it to three real-world approaches: translation layers (Wine / Proton), virtualisation and containerisation (Docker, Podman), and Electron.</li>
+                                <li>Uses published benchmark data (sysbench and AMD STREAM) to compare container and virtual machine performance against native.</li>
+                                <li>Every claim is cited, with 25 sources in IEEE style, from textbooks and peer-reviewed papers to official documentation.</li>
+                            </ul>
+                            <p>
+                                The conclusion: there is no universal solution. Each approach trades performance, portability and
+                                developer effort against each other, and the right choice depends on the workload and the team.
+                            </p>
+                        </div>
+                        <div class="project-images">
+                            <div class="image-gallery">
+                                <img src="img/projects/os_mem_throughput.png"
+                                    alt="Memory throughput benchmark: containers near 100% of native, virtual machines 57-71%"
+                                    loading="lazy" />
+                                <img src="img/projects/os_stream_benchmark.png"
+                                    alt="STREAM benchmark: Docker about 99.2% of native, virtual machines about 96.5%"
                                     loading="lazy" />
                             </div>
                         </div>

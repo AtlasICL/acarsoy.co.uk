@@ -741,6 +741,11 @@ body:has(.project-modal[open]) {
     color: #fff;
 }
 
+/* Show the benchmark charts uncropped (they have different aspect ratios) */
+#project-os-specific .image-gallery {
+    align-items: flex-start;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     .project-card,
