@@ -148,7 +148,7 @@
 /* Animation for slide transitions */
 .slide.active {
     visibility: visible;
-    animation: fade 1.5s;
+    animation: fade 0.4s ease-out;
 }
 
 @keyframes fade {
