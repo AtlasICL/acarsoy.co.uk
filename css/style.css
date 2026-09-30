@@ -635,15 +635,6 @@ footer {
     color: var(--primary-color);
 }
 
-.project-card-more span {
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-card-more span {
-    transform: translateX(4px);
-}
-
 /* Modal */
 .project-modal {
     width: min(860px, calc(100% - 2rem));
@@ -753,7 +744,6 @@ body:has(.project-modal[open]) {
 @media (prefers-reduced-motion: reduce) {
 
     .project-card,
-    .project-card-more span,
     .project-modal[open] {
         transition: none;
         animation: none;

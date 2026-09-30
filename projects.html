@@ -70,6 +70,13 @@
                     <span class="project-card-more">View details <span aria-hidden="true">&rarr;</span></span>
                 </a>
 
+                <a href="#cpu-16bit" class="project-card" data-project="cpu-16bit" aria-haspopup="dialog">
+                    <span class="project-card-tags">Digital Logic · Issie · Assembly</span>
+                    <h3>Custom 16-bit CPU with pipelining and interrupts</h3>
+                    <p>A 16-bit RISC-style CPU built up from logic gates, with a 2-stage pipeline, hardware interrupts and hand-written assembly programs.</p>
+                    <span class="project-card-more">View details <span aria-hidden="true">&rarr;</span></span>
+                </a>
+
                 <a href="#cardgame" class="project-card" data-project="cardgame" aria-haspopup="dialog">
                     <span class="project-card-tags">Java · Concurrency · JUnit</span>
                     <h3>Multi-threaded game simulation in Java</h3>
@@ -223,6 +230,42 @@ bash ~/dotfiles/setup.sh</code></pre>
                                 <li>Unit test suite run automatically with GitHub Actions on every push and pull request.</li>
                                 <li>Packaged as a standalone Windows executable with PyInstaller.</li>
                             </ul>
+                        </div>
+                    </article>
+                </div>
+            </dialog>
+
+            <!-- 16-bit CPU -->
+            <dialog class="project-modal" id="project-cpu-16bit" aria-labelledby="cpu-16bit-title">
+                <button type="button" class="modal-close" aria-label="Close project details">&times;</button>
+                <div class="modal-body">
+                    <article class="project-item">
+                        <div class="project-content">
+                            <h3 id="cpu-16bit-title">Custom 16-bit CPU with pipelining and interrupts</h3>
+                            <a href="https://github.com/AtlasICL/16-bit-cpu" target="_blank" rel="noopener">View project on GitHub</a>
+                            <p>
+                                Built a 16-bit RISC-style CPU in the Issie digital-logic simulator, starting from a half adder
+                                and finishing with a pipelined processor that handles interrupts and runs assembly programs I
+                                wrote for it.
+                            </p>
+                            <ul>
+                                <li>Built the arithmetic foundations from scratch: full adders, a ripple-carry adder/subtractor and an 8-operation ALU.</li>
+                                <li>Designed registers, counters, a ROM-driven message writer and a vending-machine state machine derived from Karnaugh maps.</li>
+                                <li>Designed the datapath's instruction-decode and ALU-control logic from truth tables, and found and fixed bugs in the provided blocks.</li>
+                                <li>Wrote the next-PC and conditional-branch logic, including signed and unsigned comparisons from the N, Z, C and V flags.</li>
+                                <li>Wrote 16- and 32-bit shift-and-add multiplication routines in assembly, optimised to branch on the carry flag.</li>
+                                <li>Analysed the 2-stage pipeline controller and interrupt handling with two interrupt sources.</li>
+                                <li>Verified every block cycle by cycle against a reference model.</li>
+                            </ul>
+                            <p>
+                                The EEP1 instruction set and reference model were provided by the Imperial College course team;
+                                the circuits, logic design and programs are my own work.
+                            </p>
+                        </div>
+                        <div class="project-images">
+                            <img src="img/projects/cpu_datapath.png"
+                                alt="CPU datapath: decoder, register file, ALU, immediate extender and flag generation"
+                                loading="lazy" />
                         </div>
                     </article>
                 </div>
