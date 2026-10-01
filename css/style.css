@@ -811,3 +811,19 @@ body:has(.project-modal[open]) {
         max-height: 92vh;
     }
 }
+
+/* Sub-heading inside the merged Skills section */
+.skills-subheading {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+}
+
+/* Name in the nav links back to Home but keeps the heading colour */
+nav h1 a.nav-home {
+    color: inherit;
+}
+
+nav h1 a.nav-home:hover,
+nav h1 a.nav-home:focus-visible {
+    color: var(--hover-color);
+}

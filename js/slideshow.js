@@ -29,6 +29,37 @@
                     goToSlide(dotIndex + 1, index);
                 });
             });
+
+            // Keyboard: left/right arrows while the slideshow (or one of its buttons) has focus
+            slideshow.addEventListener('keydown', function(event) {
+                if (event.key === 'ArrowLeft') {
+                    event.preventDefault();
+                    changeSlide(-1, index);
+                } else if (event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    changeSlide(1, index);
+                }
+            });
+
+            // Touch: swipe left/right on the photo to change slide
+            var container = slideshow.querySelector('.slideshow-container');
+            var startX = null;
+            var startY = null;
+            container.addEventListener('touchstart', function(event) {
+                if (event.touches.length !== 1) { startX = null; return; }
+                startX = event.touches[0].clientX;
+                startY = event.touches[0].clientY;
+            }, { passive: true });
+            container.addEventListener('touchend', function(event) {
+                if (startX === null) return;
+                var dx = event.changedTouches[0].clientX - startX;
+                var dy = event.changedTouches[0].clientY - startY;
+                startX = null;
+                // Only count clearly horizontal swipes, so vertical page scrolling still works
+                if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+                    changeSlide(dx < 0 ? 1 : -1, index);
+                }
+            }, { passive: true });
         });
     });
 
@@ -77,6 +108,7 @@
         // Reset all indicator dots
         dots.forEach(function(dot) {
             dot.classList.remove('active-dot');
+            dot.removeAttribute('aria-current');
         });
 
         // Show the target slide and highlight its indicator
@@ -84,5 +116,6 @@
         slides[currentIndex].style.visibility = "visible";
         slides[currentIndex].classList.add('active');
         dots[currentIndex].classList.add('active-dot');
+        dots[currentIndex].setAttribute('aria-current', 'true');
     }
 })();

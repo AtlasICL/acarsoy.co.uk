@@ -1,6 +1,6 @@
 // Wait until the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('nav a');
+    const navLinks = document.querySelectorAll('.nav-right a');
 
     // Split pathname and remove empty segments (handles trailing slashes)
     const pathSegments = window.location.pathname.split('/').filter(segment => segment !== '');

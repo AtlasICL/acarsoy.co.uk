@@ -130,6 +130,11 @@
 
 /* Individual navigation dots */
 .dot {
+    /* Reset button defaults (dots are buttons so they work with the keyboard) */
+    appearance: none;
+    border: none;
+    padding: 0;
+    vertical-align: middle;
     cursor: pointer;
     height: 15px;
     width: 15px;
@@ -185,4 +190,17 @@
     .slideshow-wrapper .slide img {
         max-height: 50vh;
     }
+}
+/* Keyboard focus styles */
+.slideshow-wrapper:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.prev:focus-visible,
+.next:focus-visible,
+.dot:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
