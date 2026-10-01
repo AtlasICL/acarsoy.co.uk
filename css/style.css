@@ -827,3 +827,52 @@ nav h1 a.nav-home:hover,
 nav h1 a.nav-home:focus-visible {
     color: var(--hover-color);
 }
+
+/* Home: Projects section with a single link box to the Projects page */
+.projects-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    padding: 1.1rem 1.25rem;
+    background-color: var(--dark-color);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-color-light);
+    transition: border-color 0.3s ease;
+}
+
+.projects-link:hover,
+.projects-link:focus-visible {
+    color: var(--text-color-light);
+    border-color: var(--primary-color);
+}
+
+.projects-link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+.projects-link-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.projects-link-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.projects-link-sub {
+    color: var(--text-color-muted);
+    font-size: 0.95rem;
+}
+
+.projects-link-arrow {
+    flex-shrink: 0;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--primary-color);
+}
