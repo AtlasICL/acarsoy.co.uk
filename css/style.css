@@ -876,3 +876,35 @@ nav h1 a.nav-home:focus-visible {
     line-height: 1;
     color: var(--primary-color);
 }
+
+/* Nested bullet points inside info sections (e.g. About me) */
+.info-section li > ul {
+    margin-top: 0.15rem;
+    color: var(--text-color-muted);
+}
+
+.info-section li > ul li {
+    margin: 0.2rem 0;
+}
+
+.info-section li > ul li::before {
+    content: "–";
+}
+
+/* Home: About me and Projects side by side, stacked on narrow screens */
+.home-split {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.home-split > .info-section {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .home-split {
+        grid-template-columns: 1fr;
+    }
+}
