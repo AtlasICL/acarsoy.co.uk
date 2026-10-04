@@ -1,6 +1,6 @@
-# robots.txt for acarsoy.co.uk
+# robots.txt for eacarsoy.com
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://acarsoy.co.uk/sitemap.xml 
+Sitemap: https://eacarsoy.com/sitemap.xml 
