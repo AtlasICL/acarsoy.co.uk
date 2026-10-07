@@ -908,3 +908,14 @@ nav h1 a.nav-home:focus-visible {
         grid-template-columns: 1fr;
     }
 }
+
+/* Trim trailing margins so every box ends one padding-width below its last line */
+.info-section > :last-child,
+.education-item:last-child,
+.experience-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-section ul > li:last-child {
+    margin-bottom: 0;
+}
