@@ -1,24 +1,20 @@
-// Wait until the DOM is fully loaded
+// Highlight the nav link for the current page
 document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-right a');
 
-    // Split pathname and remove empty segments (handles trailing slashes)
-    const pathSegments = window.location.pathname.split('/').filter(segment => segment !== '');
-    let currentPage = pathSegments.pop() || 'index.html';
+    // "/", "/index.html", "/projects", "/projects.html" and "/projects/" all
+    // normalise to the same path, so the match works with or without ".html".
+    const normalise = path => path
+        .replace(/\/index(\.html)?$/, '/')
+        .replace(/\.html$/, '')
+        .replace(/(.)\/$/, '$1');
+
+    const currentPath = normalise(window.location.pathname);
 
     navLinks.forEach(link => {
-      // Always remove existing aria-current attribute
-      link.removeAttribute('aria-current');
-      
-      const href = link.getAttribute('href');
-
-      // Compare href with currentPage and also allow for a missing ".html"
-      if (
-          href === currentPage ||
-          href === currentPage + '.html' ||
-          (currentPage === '' && href === 'index.html')
-      ) {
-        link.setAttribute('aria-current', 'page');
-      }
+        link.removeAttribute('aria-current');
+        if (normalise(link.pathname) === currentPath) {
+            link.setAttribute('aria-current', 'page');
+        }
     });
 });

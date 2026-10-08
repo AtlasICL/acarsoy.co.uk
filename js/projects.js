@@ -1,6 +1,6 @@
 /**
  * Project grid: clicking a card opens a modal with the full project details.
- * The URL hash is updated (e.g. projects.html#whatdidi) so individual
+ * The URL hash is updated (e.g. /projects#whatdidi) so individual
  * projects can be linked to directly.
  */
 document.addEventListener('DOMContentLoaded', () => {
