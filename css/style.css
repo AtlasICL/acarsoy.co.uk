@@ -1,13 +1,28 @@
 /* Custom Properties */
 :root {
-    --primary-color: #ff7f00;
-    --dark-color: #121212;
-    --card-color: #1b1b1b;
-    --border-color: #444;
-    --text-color-light: #f0f0f0;
-    --text-color-muted: #ccc;
-    --hover-color: #e16f00;
-    --dot-color: #bbb;
+    /* Palette: orange for titles and hover states, teal for highlighted phrases, on teal-tinted darks */
+    --primary-color: #ff8a1f;
+    --hover-color: #ffa24d;
+    --secondary-color: #3ccfb7;
+    --dark-color: #0c0f0f;
+    --card-color: #161d1d;
+    --raised-color: #1b2423;
+    --code-bg: #0a0c0c;
+    --border-color: #2c3736;
+    --border-strong: #3c4a48;
+    --heading-color: #f2f5f4;
+    --text-color-light: #e7ecea;
+    --text-color-muted: #97a3a0;
+    --dot-color: #5d6b69;
+    --chip-bg: #102020;
+    --chip-border: #24443f;
+    --chip-text: #a6e6dc;
+    --radius: 12px;
+    --radius-sm: 8px;
+    /* Type: Hanken Grotesk headings, IBM Plex Sans body, JetBrains Mono code */
+    --font-head: 'Hanken Grotesk', 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    --font-body: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 * {
@@ -18,10 +33,9 @@
 
 /* Usage / code blocks (terminal-style) */
 .project-content pre {
-    background: #101010;
-    /* slightly darker than card */
+    background: var(--code-bg);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     padding: 0.75rem 0.7rem;
     margin: 0.6rem 0 1.2rem;
     overflow-x: auto;
@@ -45,7 +59,7 @@
 
 .project-content pre code {
     display: block;
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     color: var(--text-color-light);
     line-height: 1.5;
@@ -56,17 +70,17 @@
 /* Inline code styling */
 .project-content p code,
 .project-content li code {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-family: var(--font-mono);
 }
 
 /* Slim, dark scrollbars across the whole site (Firefox, Chrome, Edge) */
 * {
     scrollbar-width: thin;
-    scrollbar-color: #4a4a4a transparent;
+    scrollbar-color: var(--border-strong) transparent;
 }
 
 html {
-    scrollbar-color: #4a4a4a var(--dark-color);
+    scrollbar-color: var(--border-strong) var(--dark-color);
 }
 
 /* Same look for Safari */
@@ -80,16 +94,23 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #4a4a4a;
+    background-color: var(--border-strong);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #666;
+    background-color: var(--dot-color);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
     color: var(--text-color-light);
     background-color: var(--dark-color);
     line-height: 1.6;
@@ -103,8 +124,13 @@ h1,
 h2,
 h3,
 h4 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    text-wrap: balance;
 }
 
 p {
@@ -119,6 +145,18 @@ a {
 
 a:hover {
     color: var(--primary-color);
+}
+
+/* Teal highlights the important phrases in running text */
+strong {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* Labels (Skills, Soft skills) stay white so teal is kept for real highlights */
+.technical-list strong,
+#soft-skills > ul > li > strong {
+    color: var(--heading-color);
 }
 
 /* 
@@ -164,7 +202,7 @@ nav {
     width: 2rem;
     height: 2rem;
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     color: var(--text-color-light);
     transition: color 0.3s ease, border-color 0.3s ease;
 }
@@ -182,7 +220,7 @@ nav {
 }
 
 nav h1 {
-    color: var(--primary-color);
+    color: var(--heading-color);
     font-size: 1.6rem;
     font-weight: bold;
     line-height: 1;
@@ -196,7 +234,7 @@ nav h1 {
 }
 
 .nav-right a {
-    color: var(--text-color-light);
+    color: var(--text-color-muted);
     margin-left: 1.5rem;
     position: relative;
     font-size: 1.2rem;
@@ -205,8 +243,11 @@ nav h1 {
     padding: 0.2rem 0;
 }
 
-.nav-right a:hover,
 .nav-right a[aria-current="page"] {
+    color: var(--heading-color);
+}
+
+.nav-right a:hover {
     color: var(--primary-color);
 }
 
@@ -246,7 +287,7 @@ main {
     border: 1px solid var(--border-color);
     padding: 1.5rem;
     margin-bottom: 2rem;
-    border-radius: 6px;
+    border-radius: var(--radius);
     background-color: var(--card-color);
 }
 
@@ -289,7 +330,7 @@ main {
     width: 75%;
     /* Reduced from 100% to 75% (25% smaller) */
     height: auto;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     border: 1px solid var(--border-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     object-fit: contain;
@@ -340,7 +381,7 @@ main {
 }
 
 .project-content a {
-    color: #fff;
+    color: var(--text-color-light);
     text-decoration: underline;
     position: absolute;
     top: 0;
@@ -393,8 +434,9 @@ main {
 footer {
     text-align: center;
     padding: 1.5rem;
-    background-color: #1f1f1f;
-    color: var(--text-color-light);
+    background-color: var(--raised-color);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color-muted);
     margin-top: 2rem;
 }
 
@@ -416,14 +458,13 @@ footer {
     background-color: var(--primary-color);
     color: white;
     padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: background-color 0.3s, transform 0.2s;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    transition: background-color 0.3s;
 }
 
 .social-btn:hover {
     background-color: var(--hover-color);
-    transform: translateY(-2px);
     color: white;
 }
 
@@ -589,7 +630,7 @@ footer {
 #music .project-item {
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: var(--radius);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
 }
@@ -619,7 +660,7 @@ footer {
     padding: 1.75rem;
     background-color: var(--card-color);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: var(--radius);
     color: var(--text-color-light);
     cursor: pointer;
     transition: border-color 0.3s ease;
@@ -637,7 +678,7 @@ footer {
 }
 
 .project-card-tags {
-    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--text-color-muted);
     letter-spacing: 0.02em;
@@ -645,7 +686,7 @@ footer {
 }
 
 .project-card h3 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     line-height: 1.3;
     margin-bottom: 1rem;
 }
@@ -658,7 +699,13 @@ footer {
 .project-card-more {
     margin-top: auto;
     padding-top: 1rem;
-    font-weight: bold;
+    font-weight: 600;
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .project-card-more,
+.project-card:focus-visible .project-card-more {
     color: var(--primary-color);
 }
 
@@ -671,7 +718,7 @@ footer {
     background-color: var(--card-color);
     color: var(--text-color-light);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: var(--radius);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     overflow: hidden;
 }
@@ -724,8 +771,8 @@ body:has(.project-modal[open]) {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #2a2a2a;
-    border: 1px solid var(--border-color);
+    background: var(--raised-color);
+    border: 1px solid var(--border-strong);
     border-radius: 50%;
     color: var(--text-color-light);
     font-size: 1.5rem;
@@ -762,15 +809,16 @@ body:has(.project-modal[open]) {
     display: inline-block;
     margin-bottom: 1.25rem;
     padding: 0.35rem 0.9rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 4px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
     text-decoration: none;
     white-space: normal;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .project-modal .project-content>a:hover {
-    background-color: var(--primary-color);
-    color: #fff;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 /* Show the benchmark charts uncropped (they have different aspect ratios) */
@@ -825,7 +873,7 @@ nav h1 a.nav-home {
 
 nav h1 a.nav-home:hover,
 nav h1 a.nav-home:focus-visible {
-    color: var(--hover-color);
+    color: var(--primary-color);
 }
 
 /* Home: Projects section with a single link box to the Projects page */
@@ -838,7 +886,7 @@ nav h1 a.nav-home:focus-visible {
     padding: 1.1rem 1.25rem;
     background-color: var(--dark-color);
     border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border-radius: var(--radius);
     color: var(--text-color-light);
     transition: border-color 0.3s ease;
 }
@@ -874,6 +922,12 @@ nav h1 a.nav-home:focus-visible {
     flex-shrink: 0;
     font-size: 1.6rem;
     line-height: 1;
+    color: var(--text-color-muted);
+    transition: color 0.3s ease;
+}
+
+.projects-link:hover .projects-link-arrow,
+.projects-link:focus-visible .projects-link-arrow {
     color: var(--primary-color);
 }
 
@@ -918,4 +972,314 @@ nav h1 a.nav-home:focus-visible {
 
 .info-section ul > li:last-child {
     margin-bottom: 0;
+}
+
+
+/*
+  Home: hero, Cloudflare highlight and featured projects
+  ---------------
+*/
+.hero {
+    padding: 1.5rem 0 2.5rem;
+}
+
+.hero-title {
+    letter-spacing: -0.02em;
+    font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.hero-title span {
+    color: var(--primary-color);
+}
+
+.hero-lead {
+    max-width: 46rem;
+    font-size: 1.15rem;
+    color: var(--text-color-muted);
+}
+
+.hero-lead strong {
+    color: var(--secondary-color);
+}
+
+.hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.25rem 0 0;
+    list-style: none;
+}
+
+.hero-chips li {
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--chip-border);
+    border-radius: 6px;
+    background-color: var(--chip-bg);
+    color: var(--chip-text);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+/* Featured projects */
+.featured {
+    margin-bottom: 2.5rem;
+}
+
+.featured > h2 {
+    margin-bottom: 1rem;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.25rem;
+    row-gap: 0;
+    margin-bottom: 1.25rem;
+}
+
+/* Each card spans the same five rows (visual, title, text, stats, link),
+   so the stat boxes and links line up across both cards */
+.feature-card {
+    display: grid;
+    grid-row: span 5;
+    grid-template-rows: subgrid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+    background-color: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.feature-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    padding: 1.25rem;
+    background-color: var(--code-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.feature-card > h3 {
+    margin: 0;
+    padding: 1.25rem 1.5rem 0.5rem;
+    font-size: 1.35rem;
+}
+
+.feature-card > p {
+    margin: 0;
+    padding: 0 1.5rem 1rem;
+    color: var(--text-color-muted);
+}
+
+/* Short outcome bullets under each featured project title */
+.feature-points {
+    margin: 0;
+    padding: 0 1.5rem 1.1rem;
+    list-style: none;
+    color: var(--text-color-muted);
+    font-size: 0.95rem;
+}
+
+.feature-points li {
+    position: relative;
+    padding-left: 1rem;
+    margin: 0.3rem 0;
+}
+
+.feature-points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+
+.feature-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0 1.5rem 1.25rem;
+    list-style: none;
+}
+
+.feature-stats li {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--dark-color);
+}
+
+.feature-stats strong {
+    font-family: var(--font-head);
+    font-size: 1.35rem;
+    line-height: 1.2;
+    color: var(--secondary-color);
+    font-variant-numeric: tabular-nums;
+}
+
+.feature-stats span {
+    font-size: 0.85rem;
+    color: var(--text-color-muted);
+}
+
+.feature-links {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.feature-links a {
+    font-weight: 600;
+    color: var(--text-color-light);
+}
+
+.feature-links a:hover {
+    color: var(--primary-color);
+}
+
+/* whatdidi terminal visual */
+.term {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--dark-color);
+    overflow: hidden;
+}
+
+.term-bar {
+    display: flex;
+    gap: 6px;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.term-bar span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--border-strong);
+}
+
+.term pre {
+    margin: 0;
+    padding: 0.75rem 0.9rem;
+    overflow-x: auto;
+}
+
+.term code {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--text-color-light);
+}
+
+.term-prompt {
+    color: var(--primary-color);
+}
+
+.term-out {
+    color: var(--text-color-muted);
+}
+
+/* Granite DP vs greedy chart */
+.alloc-chart {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    font-family: var(--font-body);
+}
+
+.alloc-chart .ch-a {
+    fill: var(--primary-color);
+}
+
+.alloc-chart .ch-b {
+    fill: #b85a00;
+}
+
+.alloc-chart .ch-g {
+    fill: var(--dot-color);
+}
+
+.alloc-chart .ch-in {
+    font-size: 10px;
+    font-weight: bold;
+    fill: var(--dark-color);
+}
+
+.alloc-chart .ch-label,
+.alloc-chart .ch-legend,
+.alloc-chart .ch-limit-label,
+.alloc-chart .ch-val-g {
+    font-size: 10px;
+    fill: var(--text-color-muted);
+}
+
+.alloc-chart .ch-val {
+    font-size: 11px;
+    font-weight: bold;
+    fill: var(--text-color-light);
+}
+
+.alloc-chart .ch-limit {
+    stroke: var(--text-color-muted);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+}
+
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 0;
+    }
+
+    .feature-card + .feature-card {
+        margin-top: 1.25rem;
+    }
+
+    .hero {
+        padding: 0.5rem 0 2rem;
+    }
+
+    .hero-lead {
+        font-size: 1.05rem;
+    }
+
+    .feature-visual {
+        height: auto;
+        min-height: 200px;
+        padding: 0.75rem;
+    }
+
+    .feature-card > h3 {
+        padding: 1rem 1.1rem 0.5rem;
+    }
+
+    .feature-card > p,
+    .feature-points,
+    .feature-stats {
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+    }
+
+    .feature-links {
+        padding: 0 1.1rem 1.25rem;
+    }
+
+    .feature-stats strong {
+        font-size: 1.1rem;
+    }
+
+    .term code {
+        font-size: 0.7rem;
+    }
 }
