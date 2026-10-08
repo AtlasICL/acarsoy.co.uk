@@ -79,15 +79,15 @@
 
                 <article class="feature-card">
                     <div class="feature-visual">
-                        <div class="term" aria-label="Example whatdidi usage">
+                        <div class="term term--whatdidi" aria-label="Example whatdidi usage">
                             <div class="term-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-<pre><code><span class="term-prompt">$</span> whatdidi "git push" 2
-<span class="term-out">&gt; git push
-&gt; git push -u origin main:refactoring</span>
-<span class="term-prompt">$</span> whatdidi -u git
+<pre><code><span class="term-prompt">$</span> whatdidi --unique git 3
 <span class="term-out">&gt; git push origin main
-&gt; git commit -m "feat: performance testing framework"
-&gt; git status</span></code></pre>
+&gt; git commit -m "feat: perf testing framework"
+&gt; git status</span>
+<span class="term-prompt">$</span> whatdidi curl 2
+<span class="term-out">&gt; curl -s https://sh.rustup.rs | sh
+&gt; curl -s https://api.github.com/users/AtlasICL | jq</span></code></pre>
                         </div>
                     </div>
                     <h3>whatdidi</h3>

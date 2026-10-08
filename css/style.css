@@ -727,7 +727,7 @@ footer {
 }
 
 .card-visual--pad {
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1.25rem;
 }
 
 .card-visual .term code {
@@ -1000,6 +1000,12 @@ body:has(.project-modal[open]) {
 
     .card-visual {
         height: 170px;
+    }
+
+    /* Terminals and diagrams may need a little more room on narrow screens */
+    .card-visual--pad {
+        height: auto;
+        min-height: 170px;
     }
 
     .project-card-tags,
@@ -1351,6 +1357,11 @@ nav h1 a.nav-home:focus-visible {
 
 .term-out {
     color: var(--text-color-muted);
+}
+
+/* whatdidi terminals: results one step smaller than the commands typed */
+.term--whatdidi .term-out {
+    font-size: 0.9em;
 }
 
 /* Granite DP vs greedy chart */

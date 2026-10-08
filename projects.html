@@ -61,13 +61,14 @@
             <div class="project-grid">
                 <a href="#whatdidi" class="project-card" data-project="whatdidi" aria-haspopup="dialog">
                     <div class="card-visual card-visual--pad" aria-hidden="true">
-                        <div class="term">
+                        <div class="term term--whatdidi">
                             <div class="term-bar"><span></span><span></span><span></span></div>
-<pre><code><span class="term-prompt">$</span> whatdidi "git push" 2
-<span class="term-out">&gt; git push
-&gt; git push -u origin main:refactoring</span>
-<span class="term-prompt">$</span> whatdidi mvn 1
-<span class="term-out">&gt; mvn clean compile</span></code></pre>
+<pre><code><span class="term-prompt">$</span> whatdidi --unique git 2
+<span class="term-out">&gt; git push origin main
+&gt; git commit -m "feat: perf testing framework"</span>
+<span class="term-prompt">$</span> whatdidi curl 2
+<span class="term-out">&gt; curl -s https://sh.rustup.rs | sh
+&gt; curl -s https://api.github.com/users/AtlasICL | jq</span></code></pre>
                         </div>
                     </div>
                     <span class="project-card-tags"><span>Bash</span><span>Zsh</span><span>CLI</span></span>
