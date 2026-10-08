@@ -59,7 +59,7 @@
     width: auto;
     display: block;
     margin: 0 auto;
-    border-radius: 6px;
+    border-radius: 4px;
     background-color: transparent;
     border: none;
     box-shadow: none;
@@ -195,7 +195,7 @@
 .slideshow-wrapper:focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 4px;
-    border-radius: 8px;
+    border-radius: var(--radius);
 }
 
 .prev:focus-visible,
